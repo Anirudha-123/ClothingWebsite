@@ -133,7 +133,7 @@ const Header = () => {
       </div> */}
 
       {mobileOpen && (
-        <div className="fixed inset-0 bg-gray-900 z-50 md:hidden">
+        <div className="mobile-bottom-nav fixed inset-0 bg-gray-900 z-50 md:hidden">
           <button
             className="text-3xl absolute right-6 top-6 text-white"
             onClick={() => setMobileOpen(false)}
