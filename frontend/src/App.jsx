@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#020a1c] pb-[env(safe-area-inset-bottom)]">
+      
     
     <Router>
     <Header></Header>
@@ -20,7 +20,7 @@ function App() {
         <Route path='/contact' element={<Contact></Contact>}></Route>
       </Routes>
     </Router>
-        </div>
+      
 
     </>
     
