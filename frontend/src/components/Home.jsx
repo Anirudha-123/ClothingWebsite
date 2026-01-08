@@ -2,7 +2,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 mt-5">
+    <div className=" mx-auto px-2 mt-5">
       <div className="hero a">
         <img
           src="about3.jpg"
