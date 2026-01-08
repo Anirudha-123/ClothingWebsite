@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const Home = () => {
   return (
     <div className="container mx-auto px-4">
-      <div className="hero">
+      <div className="hero a">
         <img
           src="about3.jpg"
           alt="hero"
