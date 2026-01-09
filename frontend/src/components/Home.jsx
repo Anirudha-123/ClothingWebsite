@@ -109,7 +109,7 @@ const Home = () => {
 
   <div className="absolute inset-0 bg-black/30"></div>
 
-  <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 text-center px-4">
+  <div className="absolute inset-0 flex flex-col items-center justify-end pb-35 text-center px-4">
     <p className="text-xs sm:text-sm tracking-[4px] text-white/80 uppercase mb-2">
       Straight From Hogwarts
     </p>
