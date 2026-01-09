@@ -2,11 +2,27 @@ import React, { useState } from "react";
 import { megaMenu, navLink } from "./data";
 import { Link, useNavigate } from "react-router-dom";
 
+import { useEffect } from "react";
 const Header = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileCategory, setMobileCategory] = useState("Mens");
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+
+
+useEffect(() => {
+  if (mobileOpen) {
+    document.body.style.overflow = "hidden"; // prevent background scroll
+  } else {
+    document.body.style.overflow = "auto"; // restore scroll
+  }
+
+  // cleanup when component unmounts
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [mobileOpen]);
+
 
   return (
     <>
@@ -142,22 +158,7 @@ const Header = () => {
           </button>
 
           <div className="flex justify-around text-2xl pt-24">
-            {/* {["Mens", "Womens", "Kids"].map((cat) => (
-        <span
-          key={cat}
-          onClick={() => setMobileCategory(cat)}
-          className={`cursor-pointer ${
-            mobileCategory === cat
-              ? "text-amber-300 border-b-2 border-amber-300"
-              : "text-white"
-          }`}
-        >
-          {cat}
           
-
-        </span>
-        
-      ))} */}
             {["Mens", "Womens", "Kids"].map((cat) => (
               <span
                 key={cat}
