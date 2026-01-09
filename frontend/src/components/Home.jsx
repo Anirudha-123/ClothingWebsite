@@ -94,7 +94,7 @@ const Home = () => {
       <img
         src="bo2.jpeg"
         alt="hero"
-        className="w-full h-70 sm:h-85 md:h-96 lg:h-160 object-cover "
+        className="w-full h-100 sm:h-85 md:h-96 lg:h-160 object-cover "
       />
 
       <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
