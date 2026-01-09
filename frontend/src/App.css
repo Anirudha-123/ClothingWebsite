@@ -1,0 +1,6 @@
+.mobile-bottom-nav {
+  height: 60px;
+  background: linear-gradient(180deg, #0b132b, #0a1a33);
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 50;
+}
