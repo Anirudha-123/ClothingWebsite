@@ -7,7 +7,9 @@ const Footer = () => {
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       
       <div>
-        <h2 className="text-2xl font-serif font-bold text-white mb-4">Clothing Store</h2>
+        <h3 className="text-amber-100 text-xl md:text-2xl font-bold ">
+            Clothing <span className="text-blue-200">Store</span>
+          </h3>
         <p className="text-gray-400 text-sm">
           Upgrade your wardrobe with the latest trends in fashion. Stay stylish and confident.
         </p>
