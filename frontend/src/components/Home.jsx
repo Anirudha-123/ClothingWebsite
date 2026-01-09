@@ -100,7 +100,8 @@ const Home = () => {
     className="w-full h-full object-cover object-[50%_20%]"
   />
 </div> */}
-<div  className="relative w-full h-dvh overflow-hidden">
+      
+      {/*<div  className="relative w-full h-dvh overflow-hidden">
   <img
     src="bo2.jpeg"
     alt="hero"
@@ -124,7 +125,7 @@ const Home = () => {
   </div>}
 
  
-</div>
+</div>*/}
 
 
 
