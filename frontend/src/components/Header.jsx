@@ -10,7 +10,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header relative bg-gray-800 max-w-8xl   mx-auto  flex justify-between items-center px-3 h-14 md:h-16">
+      <div className="header fixed inset-0 z-50 bg-gray-900 max-w-8xl   mx-auto  flex justify-between items-center px-3 h-14 md:h-16 border-b-2 border-white/20">
         <Link to="/">
           <h3 className="text-amber-100 text-xl md:text-2xl font-bold ">
             Clothing <span className="text-blue-200">Store</span>
