@@ -98,18 +98,16 @@ const Home = () => {
     className="w-full h-full object-cover object-[50%_20%]"
   />
 </div> */}
-
-<div className="relative w-full h-screen overflow-hidden">
-  {/* Background Image */}
+<div className="relative w-full h-dvh overflow-hidden">
   <img
     src="bo2.jpeg"
     alt="hero"
-    className="w-full h-full object-cover"
+    className="absolute inset-0 w-full h-full object-cover"
   />
 
   <div className="absolute inset-0 bg-black/30"></div>
 
-  <div className="absolute inset-0 flex flex-col items-center justify-end pb-20 text-center px-4">
+  <div className="relative flex flex-col items-center justify-end h-full lg:pb-25 pb-40 text-center px-4">
     <p className="text-xs sm:text-sm tracking-[4px] text-white/80 uppercase mb-2">
       Straight From Hogwarts
     </p>
@@ -224,7 +222,7 @@ const Home = () => {
         style={{ marginTop: "40px" }}
       />
 
-      <div data-aos="zoom-out">
+      <div data-aos="fade-up bg-gray-300">
           <img
         src="bo10.jpeg"
         alt="hero"

@@ -74,7 +74,7 @@ const Header = () => {
         </div>
 
         <button
-          className="md:hidden text-2xl text-white"
+          className="md:hidden text-2xl text-white "
           onClick={() => {
             setMobileOpen(true);
             setMobileCategory("Mens");
