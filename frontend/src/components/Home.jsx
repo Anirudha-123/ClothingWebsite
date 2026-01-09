@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaTruck, FaBoxOpen, FaFlag, FaTshirt } from "react-icons/fa";
+import "aos/dist/aos.css";
 
 const newArrivals = [
   {
@@ -42,6 +43,13 @@ const newArrivals = [
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const Home = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration for the animations
+      // once: true, // Animation triggers once
+    });
+  }, []);
   const categories = [
     { img: "img1.jpg", title: "Mens" },
     { img: "img2.jpg", title: "Womens" },
@@ -86,7 +94,7 @@ const Home = () => {
       <img
         src="bo2.jpeg"
         alt="hero"
-        className="w-full h-64 sm:h-80 md:h-96 lg:h-160 object-cover "
+        className="w-full h-70 sm:h-85 md:h-96 lg:h-160 object-cover "
       />
 
       <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
@@ -111,11 +119,14 @@ const Home = () => {
         ))}
       </div>
 
-      <img
+<div data-aos="fade-up">
+   <img
         src="bo3.jpeg"
         alt="hero"
         className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
       />
+</div>
+     
 
       <div className="text-center py-8">
         <span className="text-xs uppercase tracking-[4px] text-gray-400">
@@ -181,15 +192,19 @@ const Home = () => {
       </div>
 
       <hr
-        className="text-gray-300 px-2 py-2   pt-10 mx-3"
+        className="text-gray-300 px-2    pt-10 mx-3"
         style={{ marginTop: "40px" }}
       />
 
-      <img
+      <div data-aos="fade-down">
+          <img
         src="bo10.jpeg"
         alt="hero"
         className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
       />
+      </div>
+
+    
 
       <div className="mens md:px-7">
         <div className="text-left py-8 px-4  ">
