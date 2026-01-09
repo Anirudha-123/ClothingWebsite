@@ -107,7 +107,7 @@ const Home = () => {
 
   <div className="absolute inset-0 bg-black/30"></div>
 
-  <div className="relative flex flex-col items-center justify-end h-full lg:pb-25 pb-40 text-center px-4">
+  <div className="relative flex flex-col items-center justify-end h-full lg:pb-25 pb-40 text-center px-4" data-aos="zoom-in-up">
     <p className="text-xs sm:text-sm tracking-[4px] text-white/80 uppercase mb-2">
       Straight From Hogwarts
     </p>
@@ -154,7 +154,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="text-center py-8">
+      <div  className="text-center py-8">
         <span className="text-xs uppercase tracking-[4px] text-gray-400">
           Fresh Collection
         </span>
@@ -231,7 +231,7 @@ const Home = () => {
       </div>
      
 
-      <div className="mens md:px-7">
+      <div  className="mens md:px-7">
         <div className="text-left py-8 px-4  ">
           <h2 className="mt-3 text-xl sm:text-2xl md:text-3xl font-serif font-semibold text-gray-800 tracking-tight">
             Shop Men
@@ -300,9 +300,10 @@ const Home = () => {
         <hr
           className="text-gray-300 px-2 py-2   pt-3 mx-3"
           style={{ marginTop: "40px" }}
+          
         />
       </div>
-      <div className="max-w-4xl mx-auto px-4 py-6 pb-12 text-center">
+      <div data-aos="fade-up" className="max-w-4xl mx-auto px-4 py-6 pb-12 text-center" >
         <h2 className="text-3xl sm:text-4xl md:text-3xl font-extrabold text-gray-900">
           Clothing Store
         </h2>
@@ -319,7 +320,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pb-10">
+      <div className="max-w-7xl mx-auto px-4 pb-10" >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <div className="w-12 h-11 md:w-20 md:h-20 rounded-full border border-gray-300 flex items-center justify-center mb-3">
