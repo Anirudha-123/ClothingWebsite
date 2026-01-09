@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <><footer className="bg-gray-900 text-gray-200 pt-10">
+    <><footer className="bg-gray-900 text-gray-200 pt-10 ">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       
@@ -69,12 +69,17 @@ const Footer = () => {
       </div>
     </div>
 
-    <div className="mt-10 border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-      <p>© 2026 YourBrand. All rights reserved.</p>
+    <div className="mt-10  border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm pb-10">
+     <p>
+  © 2026 Clothing Store | Designed & Developed by{"  "}
+  <span className="text-white font-medium">  Anirudha</span>
+</p>
+
       <div className="flex gap-4 mt-3 md:mt-0">
         <a href="#" className="hover:text-white transition">Privacy Policy</a>
         <a href="#" className="hover:text-white transition">Terms of Service</a>
       </div>
+    
     </div>
   </div>
 </footer>

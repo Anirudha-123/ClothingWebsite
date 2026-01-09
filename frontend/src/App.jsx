@@ -4,6 +4,7 @@ import Mens from "./components/Mens.jsx";
 import Home from "./components/Home.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+import Home1 from "./components/Home1.jsx";
 
 function App() {
   return (

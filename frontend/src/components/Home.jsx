@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaTruck, FaBoxOpen, FaFlag, FaTshirt } from "react-icons/fa";
 import "aos/dist/aos.css";
+import AOS from "aos";
 
 const newArrivals = [
   {
@@ -43,7 +44,6 @@ const newArrivals = [
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 const Home = () => {
-
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration for the animations
@@ -91,11 +91,39 @@ const Home = () => {
 
   return (
     <div>
-      <img
-        src="bo2.jpeg"
-        alt="hero"
-        className="w-full h-70 sm:h-85 md:h-96 lg:h-160 object-cover "
-      />
+     
+
+      {/* <div className="w-full h-screen">
+        <img src="bo2.jpeg" alt="hero" className="w-full h-full object-cover" />
+      </div> */}
+<div className="relative w-full h-screen overflow-hidden">
+  {/* Background Image */}
+  <img
+    src="bo2.jpeg"
+    alt="hero"
+    className="w-full h-full object-cover"
+  />
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/30"></div>
+
+  {/* Bottom Text */}
+  <div className="absolute inset-0 flex flex-col items-center justify-end pb-24 text-center px-4">
+    <p className="text-xs sm:text-sm tracking-[4px] text-white/80 uppercase mb-2">
+      Straight From Hogwarts
+    </p>
+
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-wide">
+      Harry Potter Collection
+    </h1>
+
+    <button className="mt-6 px-6 py-3 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition">
+      SHOP NOW
+    </button>
+  </div>
+</div>
+
+
 
       <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
         {categories.map((i, index) => (
@@ -119,14 +147,13 @@ const Home = () => {
         ))}
       </div>
 
-<div data-aos="fade-up">
-   <img
-        src="bo3.jpeg"
-        alt="hero"
-        className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
-      />
-</div>
-     
+      <div data-aos="fade-up">
+        <img
+          src="bo3.jpeg"
+          alt="hero"
+          className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
+        />
+      </div>
 
       <div className="text-center py-8">
         <span className="text-xs uppercase tracking-[4px] text-gray-400">
@@ -142,7 +169,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="relative px-4 mt-6">
+     <div className="relative px-4 mt-6 overflow-x-hidden">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
@@ -189,22 +216,21 @@ const Home = () => {
         >
           <FaChevronRight />
         </button>
-      </div>
+      </div> 
 
       <hr
         className="text-gray-300 px-2    pt-10 mx-3"
         style={{ marginTop: "40px" }}
       />
 
-      <div data-aos="fade-down">
-          <img
-        src="bo10.jpeg"
-        alt="hero"
-        className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
-      />
+      <div data-aos="fade-up bg-gray-300">
+        <img
+          src="bo10.jpeg"
+          alt="hero"
+          className="w-full h-64 sm:h-80 md:h-96 lg:h-170 object-cover "
+        />
       </div>
-
-    
+     
 
       <div className="mens md:px-7">
         <div className="text-left py-8 px-4  ">
@@ -223,7 +249,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="relative px-4 mt-1 mb-5">
+       <div className="relative px-4 mt-1 mb-5 overflow-x-hidden">
           <button
             onClick={handlePrev}
             disabled={startIndex === 0}
@@ -270,7 +296,7 @@ const Home = () => {
           >
             <FaChevronRight />
           </button>
-        </div>
+        </div> 
 
         <hr
           className="text-gray-300 px-2 py-2   pt-3 mx-3"
@@ -278,24 +304,21 @@ const Home = () => {
         />
       </div>
       <div className="max-w-4xl mx-auto px-4 py-6 pb-12 text-center">
-  <h2 className="text-3xl sm:text-4xl md:text-3xl font-extrabold text-gray-900">
-    Clothing Store
-  </h2>
+        <h2 className="text-3xl sm:text-4xl md:text-3xl font-extrabold text-gray-900">
+          Clothing Store
+        </h2>
 
-  
+        {/* Subheading / description */}
+        <p className="mt-4 text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed">
+          Uncover the latest trends and premium styles curated just for you.
+        </p>
 
-  {/* Subheading / description */}
-  <p className="mt-4 text-gray-600 text-base sm:text-lg md:text-xl leading-relaxed">
-    Uncover the latest trends and premium styles curated just for you.
-  </p>
-
-  
-  <p className="mt-4 text-gray-500 text-sm sm:text-base leading-relaxed">
-    Clothing Store brings you high-quality fashion that blends comfort, style, and affordability. 
-    Explore casual wear, formal attire, and everything in between for your perfect wardrobe upgrade.
-  </p>
-</div>
-
+        <p className="mt-4 text-gray-500 text-sm sm:text-base leading-relaxed">
+          Clothing Store brings you high-quality fashion that blends comfort,
+          style, and affordability. Explore casual wear, formal attire, and
+          everything in between for your perfect wardrobe upgrade.
+        </p>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 pb-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
