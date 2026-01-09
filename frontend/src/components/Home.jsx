@@ -1,4 +1,4 @@
-noimport React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTruck, FaBoxOpen, FaFlag, FaTshirt } from "react-icons/fa";
 import "aos/dist/aos.css";
 
