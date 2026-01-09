@@ -53,7 +53,7 @@ const Home = () => {
   const categories = [
     { img: "img1.jpg", title: "Mens" },
     { img: "img2.jpg", title: "Womens" },
-    { img: "img3.jpg", title: "Kids" },
+    // { img: "img3.jpg", title: "Kids" },
   ];
 
   const getDiscount = (price, originalPrice) => {
@@ -128,16 +128,17 @@ const Home = () => {
 
 
 
-      <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
+      <div className="categories grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-2 gap-1 px-1 py-1 ">
         {categories.map((i, index) => (
           <div
             key={index}
-            className="relative w-full aspect-3/4 overflow-hidden rounded-md"
+            className="relative w-full  overflow-hidden rounded-md"
           >
+            {/* transition-all duration-300 hover:-translate-y-2 */}
             <img
               src={i.img}
               alt="catImg"
-              className="w-full h-full  object-cover transition-all duration-300 hover:-translate-y-2"
+              className="w-full h-full  object-cover "
             />
 
             <h3
@@ -324,7 +325,7 @@ const Home = () => {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 pb-10" >
+      <div className="max-w-7xl mx-auto px-4 pb-10 pt-10" >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center">
             <div className="w-12 h-11 md:w-20 md:h-20 rounded-full border border-gray-300 flex items-center justify-center mb-3">
