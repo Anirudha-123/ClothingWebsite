@@ -196,7 +196,7 @@ const Home = () => {
         style={{ marginTop: "40px" }}
       />
 
-      <div data-aos="fade-down">
+      <div data-aos="fade-up">
           <img
         src="bo10.jpeg"
         alt="hero"
