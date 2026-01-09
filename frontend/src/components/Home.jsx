@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+noimport React, { useEffect, useState } from "react";
 import { FaTruck, FaBoxOpen, FaFlag, FaTshirt } from "react-icons/fa";
 import "aos/dist/aos.css";
 
@@ -94,7 +94,7 @@ const Home = () => {
       <img
         src="bo2.jpeg"
         alt="hero"
-        className="w-full h-150 sm:h-85 md:h-96 lg:h-160 object-cover "
+        className="w-full h-180 sm:h-85 md:h-96 lg:h-160 object-cover "
       />
 
       <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
