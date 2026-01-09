@@ -93,13 +93,13 @@ const Home = () => {
 
   return (
     <div>
-      {/* <div className="w-full h-screen overflow-hidden">
+      <div className="w-full h-screen overflow-hidden">
   <img
     src="bo2.jpeg"
     alt="hero"
     className="w-full h-full object-cover object-[50%_20%]"
   />
-</div> */}
+</div> 
       
       {/*<div  className="relative w-full h-dvh overflow-hidden">
   <img
@@ -129,7 +129,7 @@ const Home = () => {
 
 
 
-      <div className="categories grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-2 gap-1 px-1 py-1 ">
+      <div className="categories grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-1 px-1 py-1 ">
         {categories.map((i, index) => (
           <div
             key={index}
