@@ -5,18 +5,21 @@ import Home from "./components/Home.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import Home1 from "./components/Home1.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
+        <ScrollToTop />
         <Routes>
           <Route path="/mens" element={<Mens></Mens>}></Route>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/contact" element={<Contact></Contact>}></Route>
         </Routes>
         <Footer />
+      
       </Router>
     </>
   );

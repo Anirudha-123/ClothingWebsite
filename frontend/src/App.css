@@ -11,58 +11,8 @@ html, body {
 }
 
 
-.swiper-button-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-}
 
-.nav-btn {
-  background: white;
-  border: 1px solid #d1d5db;
-  width: 40px;
-  height: 40px;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  cursor: pointer;
-  transition: opacity 0.3s ease, background 0.3s ease;
-}
-
-/* Disabled state */
-.swiper-button-disabled {
-  opacity: 0.3 !important;
-  background: #f3f4f6 !important;
-  cursor: not-allowed !important;
-  pointer-events: none !important;
-}
-
-.swiper-button-disabled svg {
-  opacity: 0.5;
-}
-
-/* Disabled button */
-.swiper-button-disabled {
-  opacity: 0.35 !important;
-  background: #f3f4f6 !important;
-  cursor: not-allowed !important;
-  pointer-events: none !important;
-}
-
-/* 🔥 THIS FIXES THE BLACK ARROW */
-.swiper-button-disabled svg {
-  color: #9ca3af !important; /* Tailwind gray-400 */
-}
-
-.nav-btn {
-  @apply flex items-center justify-center
-         w-10 h-10
-         rounded-full
-         bg-white
-         shadow-md
-         border
-         text-gray-800
-         transition;
+html,
+body {
+  scroll-behavior: smooth;
 }
