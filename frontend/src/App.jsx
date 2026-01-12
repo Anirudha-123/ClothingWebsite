@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 
-import Home from "./pages/Home/Home.jsx";
-import Contact from "./pages/Contact/Contact.jsx";
+import Home from "./pages/home/Home.jsx";
+import Contact from "./pages/contact/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
-import Cart from "./pages/Cart/Cart.jsx";
-import Mens from "./pages/Mens/Mens.jsx";
+import Cart from "./pages/cart/Cart.jsx";
+import Mens from "./pages/mens/Mens.jsx";
 
 
 
