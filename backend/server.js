@@ -5,7 +5,7 @@ import cors from 'cors'
 import express from 'express'
 import connectDB from './config/db.js'
 import userRoute from './routes/userRoute.js'
-import productRoute from './routes/productRoute.js'
+import productRoute from './routes/product.route.js'
 
 
 const app = express()
@@ -19,7 +19,7 @@ dotenv.config()
 
 connectDB()
 
-app.use('/api/products' , productRoute)
+app.use('/api/products'  ,productRoute)
 
 
 app.use('/api/users' ,userRoute)

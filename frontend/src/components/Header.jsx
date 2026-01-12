@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { megaMenu, navLink } from "./data";
+import { megaMenu, navLink } from "../utils/data";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useEffect } from "react";
