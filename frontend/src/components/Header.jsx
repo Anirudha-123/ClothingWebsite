@@ -187,8 +187,7 @@ useEffect(() => {
               >
                 
                 <span className="text-white border-b border-gray-500 pb-2">
-                  <Link to="/mens" className="nav-item >
-                    Shirt</Link>
+                <Link to="/mens">Shirt</Link>
                 
                 </span>
 
