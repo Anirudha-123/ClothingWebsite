@@ -185,8 +185,10 @@ useEffect(() => {
                 className="flex flex-col space-y-4 text-xl
               "
               >
+                
                 <span className="text-white border-b border-gray-500 pb-2">
-                  Shirt
+                <Link to="/mens">Shirt</Link>
+                
                 </span>
 
                 <span className="text-white border-b border-gray-500 pb-2">
