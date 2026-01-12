@@ -1,6 +1,6 @@
 import { uploadOnCloudinary } from "../config/cloudinary.js";
 import Product from "../models/product.model.js";
-
+//bk
 const addProduct = async (req, res) => {
   try {
     const { name, description, price, category, subCategory,originalPrice, quantity } = req.body;
