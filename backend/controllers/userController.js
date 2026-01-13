@@ -1,5 +1,5 @@
 import User from "../models/user.js";
-import cookie from "cookie-parser";
+// import cookie from "cookie-parser";
 import {
   generateAccesToken,
   generateRefreshToken,
@@ -67,8 +67,8 @@ const login = async (req, res) => {
     };
 
     res
-      .cookie("accessToken", accessToken, options)
-      .cookie("refreshToken", refreshToken, options)
+      // .cookie("accessToken", accessToken, options)
+      // .cookie("refreshToken", refreshToken, options)
       .json({
         message: "login sucessfully",
         user: loggedInuser,
@@ -108,8 +108,8 @@ const logout = async (req, res) => {
   };
 
   return res
-    .clearCookie("accessToken", options)
-    .clearCookie("refreshToken", options)
+    // .clearCookie("accessToken", options)
+    // .clearCookie("refreshToken", options)
     .json({ message: "Logout successful" });
 };
 
