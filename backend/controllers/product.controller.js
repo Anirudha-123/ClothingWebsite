@@ -31,7 +31,8 @@ const addProduct = async (req, res) => {
       price,
       category,
       subCategory,
-      img: img.url,
+      // img: img.url,
+      img: img.secure_url,
       originalPrice,
       quantity
     });
