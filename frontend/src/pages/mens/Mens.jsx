@@ -50,12 +50,12 @@ const Mens = () => {
               />
 
               {/* Name + Price Row */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 ms-2">
                 <p className="font-semibold text-sm sm:text-base md:text-lg lg:text-xl truncate">
                   {item.name}
                 </p>
 
-                <div className="flex items-center gap-2 flex-shrink-0 whitespace-nowrap">
+                <div className="flex items-center gap-2 flex-shrink-0 whitespace-nowrap mb-2">
                   <p className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg">
                     ₹ {item.price}
                   </p>
