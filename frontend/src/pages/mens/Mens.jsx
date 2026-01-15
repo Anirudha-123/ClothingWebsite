@@ -64,7 +64,7 @@ const Mens = () => {
                       <p className="text-gray-400 line-through text-sm sm:text-base md:text-lg">
                         ₹ {item.originalPrice}
                       </p>
-                      <p className="text-green-600 font-semibold text-sm sm:text-base md:text-lg">
+                      <p className="text-green-600 hidden md:flex font-semibold text-sm sm:text-base md:text-lg">
                         {Math.round(
                           ((item.originalPrice - item.price) / item.originalPrice) * 100
                         )}
