@@ -58,8 +58,8 @@ const ProductDetails = () => {
             src={i}
             alt="thumb"
             className="w-33 h-39 sm:w-24 sm:h-32 lg:w-56  lg:h-51
-                       object-cover cursor-pointer border
-                       hover:border-black transition"
+                       object-cover cursor-pointer md:border
+                       md:hover:border-black transition"
             onMouseEnter={(e) => setBgImg(e.target.src)}
           />
         ))}
