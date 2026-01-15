@@ -35,7 +35,7 @@ const Mens = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pt-10">
+        {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 pt-10">
           {products.map((item, index) => (
             <div key={index}>
               {" "}
@@ -78,7 +78,59 @@ const Mens = () => {
             </div>
           ))}
         </div>
+      </div> */}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {products.map((item, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+      >
+        {/* Product Image */}
+        <img
+          src={item?.img}
+          alt={item.name}
+          className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover"
+        />
+
+        {/* Product Info */}
+        <div className="flex flex-col gap-2 p-4 flex-1">
+          <p className="font-semibold text-base sm:text-lg md:text-xl lg:text-2xl">
+            {item.name}
+          </p>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-gray-800 font-semibold text-sm sm:text-base md:text-lg">
+              ₹ {item.price}
+            </p>
+            {item.originalPrice && item.originalPrice > item.price && (
+              <>
+                <p className="text-gray-400 line-through text-sm sm:text-base md:text-lg">
+                  ₹ {item.originalPrice}
+                </p>
+                <p className="text-green-600 font-semibold text-sm sm:text-base md:text-lg">
+                  {Math.round(
+                    ((item.originalPrice - item.price) / item.originalPrice) * 100
+                  )}
+                  % OFF
+                </p>
+              </>
+            )}
+          </div>
+
+          <button
+            className="mt-auto px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600 transition-all font-semibold text-sm sm:text-base"
+            onClick={() => {
+              dispatch(addToCart(item));
+              navigate(`/product/${item._id}`);
+            }}
+          >
+            Add To Cart
+          </button>
+        </div>
       </div>
+    ))}
+  </div>
     </>
   );
 };
