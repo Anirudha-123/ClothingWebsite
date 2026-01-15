@@ -8,7 +8,7 @@ const UseProducts = (category) => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/products/get?category=${category}`
+          `https://clothingwebsitebackend.onrender.com/api/products/get?category=${category}`
         );
 
         setProducts(response.data.products);
