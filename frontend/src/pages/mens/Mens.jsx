@@ -40,7 +40,10 @@ const Mens = () => {
           {products.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+              className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"   onClick={() => {
+                    dispatch(addToCart(item));
+                    navigate(`/product/${item._id}`);
+                  }}
             >
               {/* Product Image */}
               <img
@@ -76,9 +79,9 @@ const Mens = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <div className="px-4 pb-4">
+             <div className="px-4 pb-4 hidden">
                 <button
-                  className="w-full px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600 transition-all font-semibold text-sm sm:text-base"
+                  className="w-full px-4 py-2 hidden bg-green-700 text-white rounded hover:bg-green-600 transition-all font-semibold text-sm sm:text-base"
                   onClick={() => {
                     dispatch(addToCart(item));
                     navigate(`/product/${item._id}`);
@@ -86,7 +89,7 @@ const Mens = () => {
                 >
                   Add To Cart
                 </button>
-              </div>
+              </div> 
             </div>
           ))}
         </div>
