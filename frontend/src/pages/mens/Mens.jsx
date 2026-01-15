@@ -45,15 +45,15 @@ const Mens = () => {
                 className="h-30 md:h-60 lg:h-130 w-full object-cover"
               />
               <div className="flex flex-col gap-4">
-                <p className="font-semibold text-2xl">{item.name}</p>
+                <p className="font-semibold text-sm md:text-2xl">{item.name}</p>
 
                 <div className="flex flex-row space-x-3">
-                  <p className="text-gray-600 font-bold ">₹ {item.price}</p>
-                  <p className="text-gray-400 line-through font-semibold">
+                  <p className="text-gray-600 md:font-bold text-sm">₹ {item.price}</p>
+                  <p className="text-gray-400 line-through md:font-semibold text-sm">
                     ₹ {item?.originalPrice}
                   </p>
 
-                  <p className="text-green-600 font-semibold">
+                  <p className="text-green-600 md:font-semibold text-sm">
                     {item.originalPrice && item.originalPrice > item.price
                       ? `${Math.round(
                           ((item.originalPrice - item.price) /
