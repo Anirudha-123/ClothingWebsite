@@ -46,7 +46,7 @@ const ProductDetails = () => {
     <>
       
 
-      <div className="container mx-auto px-5 mt-25">
+      <div className="container mx-auto md:px-5 mt-25">
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
     <div className="flex flex-col lg:flex-row gap-4 h-full">
