@@ -40,7 +40,7 @@ const Mens = () => {
             <div key={index}>
               {" "}
               <img
-                src={item?.img.replace(/^http:\/\//i, 'https://')}
+                src={item?.img}
                 alt="img"
                 className="h-30 md:h-60 lg:h-130 w-full object-cover"
               />
