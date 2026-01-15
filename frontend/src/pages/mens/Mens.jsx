@@ -50,7 +50,7 @@ const Mens = () => {
               />
 
               {/* Name + Price Row */}
-              <div className="flex items-center justify-between p-4 flex-1">
+              <div className="flex flex-col gap-2">
                 <p className="font-semibold text-sm sm:text-base md:text-lg lg:text-xl truncate">
                   {item.name}
                 </p>
