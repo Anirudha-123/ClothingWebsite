@@ -134,7 +134,5 @@ const Mens = () => {
 
          </div>
  
-  );
-};
 
 export default Mens;
