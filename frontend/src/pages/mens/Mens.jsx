@@ -79,7 +79,7 @@ const Mens = () => {
                     </>
                   )}
                 </div> */}
-             <div className="flex items-center justify-between p-4 flex-1">
+          <div className="flex items-center justify-between p-4 flex-1">
   {/* Product Name */}
   <p className="font-semibold text-sm sm:text-base md:text-lg lg:text-xl truncate">
     {item.name}
@@ -106,6 +106,7 @@ const Mens = () => {
     )}
   </div>
 </div>
+
 
 
 
