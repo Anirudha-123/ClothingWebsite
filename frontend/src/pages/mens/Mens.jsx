@@ -4,6 +4,8 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/ProductSlice.jsx";
 import { useNavigate } from "react-router-dom";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 const Mens = () => {
  useEffect(() => {
