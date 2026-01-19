@@ -51,7 +51,16 @@ const ProductDetails = () => {
       <div className="container mx-auto px-5 mt-25">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="flex flex-col lg:flex-row gap-4 h-full">
-            <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full">
+           
+            <div className="flex order-1 ">
+              <img
+                src={bgimg}
+                alt="product"
+                className="w-full max-h-[88vh] md:h-220 object-cover "
+              />
+            </div>
+
+             <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full">
               {images.map((i, index) => (
                 <img
                   key={index}
@@ -65,13 +74,6 @@ const ProductDetails = () => {
               ))}
             </div>
 
-            <div className="flex order-1 ">
-              <img
-                src={bgimg}
-                alt="product"
-                className="w-full max-h-[88vh] md:h-220 object-cover "
-              />
-            </div>
           </div>
 
           <div className="details flex flex-col justify-h-full ">
