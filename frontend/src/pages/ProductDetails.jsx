@@ -16,7 +16,7 @@ const ProductDetails = () => {
     const getProduct = async (params) => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/products/${id}`,
+          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
         );
 
         setProduct(response.data.product);
