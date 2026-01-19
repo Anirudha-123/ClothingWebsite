@@ -6,6 +6,7 @@ import { addToCart } from "../../redux/ProductSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import {useEffect} from "react"
 
 const Mens = () => {
  useEffect(() => {
