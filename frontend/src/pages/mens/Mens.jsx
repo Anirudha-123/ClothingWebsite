@@ -51,7 +51,7 @@ const Mens = () => {
         {/* Product Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((item, index) => (
-            <div key={index} className=" shadow-sm "  onClick={() => navigate(`/product/${item._id}`)}>
+            <div data-aos="fade-up" key={index} className=" shadow-sm "  onClick={() => navigate(`/product/${item._id}`)} >
               {" "}
               <img
                 src={item?.img}
