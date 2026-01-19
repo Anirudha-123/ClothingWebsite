@@ -21,7 +21,7 @@ const Mens = () => {
         <img
           src="/bo3.jpeg"
           alt="mensImg"
-          className="w-full h-[50vh] md:h-[70vh] lg:h-[70vh] object-cover"
+          className="w-full h-[30vh] md:h-[70vh] lg:h-[70vh] object-cover"
         />
         <h4 className="absolute top-1/2 left-12 transform -translate-y-1/2 lg:text-4xl text-2xl text-white font-bold z-40">
           Mens
@@ -48,7 +48,7 @@ const Mens = () => {
                 src={item?.img}
                 alt="img"
                
-                className="h-30 md:h-60 lg:h-130 w-full object-cover"
+                className="h-40 md:h-60 lg:h-130 w-full object-cover"
               />
               <div className="flex flex-col gap-2">
                 <p className="font-semibold  text-sm md:text-xl">{item.name}</p>
