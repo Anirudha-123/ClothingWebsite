@@ -31,10 +31,6 @@ const addProduct = async (req, res) => {
       price,
       category,
       subCategory,
-<<<<<<< HEAD
-=======
-      // img: img.url,
->>>>>>> 46b800c39676cc236feb8f9a76f4a36fadb9801e
       img: img.secure_url,
       originalPrice,
       quantity
