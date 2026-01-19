@@ -7,7 +7,7 @@ import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Cart from "./pages/cart/Cart.jsx";
-import Mens from "./pages/mens/Mens.jsx";
+import Mens from "./pages/Mens/Mens.jsx";
 
 
 
