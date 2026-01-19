@@ -187,7 +187,7 @@ useEffect(() => {
               >
                 
                 <span className="text-white border-b border-gray-500 pb-2">
-                <Link to="/mens">Shirt</Link>
+                <Link to="/mens"  onClick={() => setMobileOpen(false)}>Shirt</Link>
                 
                 </span>
 
