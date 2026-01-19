@@ -23,7 +23,7 @@ const Mens = () => {
           alt="mensImg"
           className="w-full h-[50vh] md:h-[70vh] lg:h-[70vh] object-cover"
         />
-        <h4 className="absolute top-1/2 left-12 transform -translate-y-1/2 lg:text-4xl text-2xl text-white font-bold z-50">
+        <h4 className="absolute top-1/2 left-12 transform -translate-y-1/2 lg:text-4xl text-2xl text-white font-bold z-40">
           Mens
         </h4>
       </div>
