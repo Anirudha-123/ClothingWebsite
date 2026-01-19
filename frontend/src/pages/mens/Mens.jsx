@@ -48,7 +48,7 @@ const Mens = () => {
                 src={item?.img}
                 alt="img"
                
-                className="h-40 md:h-60 lg:h-130 w-full object-cover"
+                className="h-80 md:h-60 lg:h-130 w-full object-cover"
               />
               <div className="flex flex-col gap-2">
                 <p className="font-semibold  text-sm md:text-xl">{item.name}</p>
