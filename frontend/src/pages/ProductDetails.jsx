@@ -51,13 +51,13 @@ const ProductDetails = () => {
       <div className="container mx-auto px-5 mt-25">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="flex flex-col lg:flex-row gap-4 h-full">
-            <div className="flex lg:flex-col gap-1 order-2 lg:order-1 h-full">
+            <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full">
               {images.map((i, index) => (
                 <img
                   key={index}
                   src={i}
                   alt="thumb"
-                  className="w-full h-39 sm:w-24 sm:h-32 lg:w-56  lg:h-51
+                  className="w-full h-39 sm:w-full sm:h-32 lg:w-56  lg:h-51
                        object-cover cursor-pointer border
                        hover:border-black transition"
                   onMouseEnter={(e) => setBgImg(e.target.src)}
