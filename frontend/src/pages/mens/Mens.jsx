@@ -6,6 +6,13 @@ import { addToCart } from "../../redux/ProductSlice.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Mens = () => {
+ useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration for the animations
+      // once: true, // Animation triggers once
+    });
+  }, []);
+  
   const products = UseProducts("mens");
   const navigate = useNavigate();
   const dispatch = useDispatch();
