@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
 
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate()
 
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState("");
@@ -37,9 +38,7 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
-//  if (loading) {
-//   return <Spinner size="12" color="black" text="Loading product..." />;
-// }
+
 
 if (loading) {
   return <ProductDetailsSkeleton />;
@@ -49,9 +48,38 @@ if (loading) {
 
   return (
     <>
-      <div className="container mx-auto px-2 mt-25 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
-          <div className="flex flex-col lg:flex-row gap-3 h-full">
+      <div className="container mx-auto px-2  lg:px-8">
+
+        <div className="flex flex-wrap items-center gap-2 mt-20 mb-4 text-sm md:text-xl">
+
+  <p
+    onClick={() => navigate("/")}
+    className="text-gray-400 font-semibold cursor-pointer hover:text-black transition"  style={{fontFamily:"math"}}
+  >
+    Home
+  </p>
+
+  <span className="text-gray-300">/</span>
+
+  <p
+    onClick={() => navigate("/mens")}
+    className="text-gray-400 font-semibold cursor-pointer hover:text-black transition"  style={{fontFamily:"math"}}
+  >
+    Mens
+  </p>
+
+  <span className="text-gray-300">/</span>
+
+  <p className="text-black font-semibold truncate max-w-55 md:max-w-full" style={{fontFamily:"math"}}>
+    {product?.name}
+  </p>
+
+</div>
+
+         
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+
+          <div className="flex flex-col lg:flex-row gap-1 lg:gap-3 h-full">
             <div className="flex order-1 ">
               <img
                 src={bgimg}
@@ -75,7 +103,7 @@ if (loading) {
           </div>
 
           <div className=" flex flex-col justify-h-full space-y-3">
-            <h5 className="md:text-2xl  text-xl  font-semibold text-black pt-2 mb-1">
+            <h5 className="md:text-2xl  text-xl  font-semibold text-black pt-2 mb-1"  style={{fontFamily:"math"}}>
               {product?.name.toUpperCase()}
             </h5>
 
