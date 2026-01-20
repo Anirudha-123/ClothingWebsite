@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UseProducts from "../hooks/UseProducts.jsx";
 import { IoFilterSharp } from "react-icons/io5";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SkeletonGrid from "../../components/SkeletonGrid.jsx";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Mens = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration for the animations
+      // once: true, // Animation triggers once
+    });
+  }, []);
   const { products, loading, hasFeched } = UseProducts("mens");
   const navigate = useNavigate();
 
@@ -48,6 +55,9 @@ const Mens = () => {
               {products.map((item, index) => (
                 <div
                   key={index}
+                  data-aos="fade-up"
+                    data-aos-delay={index * 80}
+
                   onClick={() => navigate(`/product/${item._id}`)}
                 >
                   <img
