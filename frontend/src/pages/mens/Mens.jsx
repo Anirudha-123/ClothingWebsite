@@ -15,7 +15,7 @@ const Mens = () => {
         <img
           src="/bo3.jpeg"
           alt="mensImg"
-          className="w-full h-[50vh] md:h-[70vh] lg:h-[70vh] object-cover"
+          className="w-full h-[30vh] md:h-[70vh] lg:h-[70vh] object-cover"
         />
       </div>
 
