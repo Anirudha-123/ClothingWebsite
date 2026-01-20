@@ -56,7 +56,6 @@ const Mens = () => {
                 <div
                   key={index}
                   data-aos="fade-up"
-                    data-aos-delay={index * 80}
 
                   onClick={() => navigate(`/product/${item._id}`)}
                 >
