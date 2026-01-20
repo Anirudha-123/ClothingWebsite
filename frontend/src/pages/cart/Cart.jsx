@@ -1,16 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../redux/ProductSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
 
-  console.log(cart);
 
   return (
     <div className="container mx-auto lg:px-10 px-3" style={{ marginTop: "100px" }}>
-      <h3 className="font-bold p-2 text-sm lg:text-xl">CART</h3>
+      {cart.length > 0 ? <h3 className="font-bold p-2 text-sm lg:text-xl">CART</h3> :<h3 className="font-bold p-2 text-sm lg:text-xl">CART IS EPMTY 
+        
+        <Link to={"/"} className="nav-link ms-2 text-blue-400">Shop Now</Link>
+        </h3>}
+
+      
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {cart.map((i) => (
           <>

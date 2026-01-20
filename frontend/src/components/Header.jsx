@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { megaMenu, navLink } from "../utils/data";
 import { Link, useNavigate } from "react-router-dom";
+import { IoCartOutline } from "react-icons/io5";
+
 
 import { useEffect } from "react";
 const Header = () => {
@@ -89,7 +91,18 @@ useEffect(() => {
           </button>
         </div>
 
-        <button
+        <div className="flex flex-row gap-8">
+
+ <button
+          className="md:hidden text-2xl text-white "
+          onClick={() => navigate("/cart")
+          }
+        >
+        <IoCartOutline />
+
+        </button>
+
+         <button
           className="md:hidden text-2xl text-white "
           onClick={() => {
             setMobileOpen(true);
@@ -98,6 +111,9 @@ useEffect(() => {
         >
           ☰
         </button>
+        </div>
+        
+       
       </div>
 
       {/* <div className="flex ">
