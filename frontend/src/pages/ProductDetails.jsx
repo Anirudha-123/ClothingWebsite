@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Spinner from "../components/Spinner";
+import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
-  console.log(id);
 
   const [product, setProduct] = useState({});
+  const [selectedSize, setSelectedSize] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [bgimg, setBgImg] = useState(null);
@@ -34,24 +37,21 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
-  if (loading) {
-    return (
-      <h3
-        className="absolute inset-0 flex items-center justify-center font-bold text-2xl text-gray-800 "
-        style={{ minHeight: "300px" }}
-      >
-        Loading...
-      </h3>
-    );
-  }
+//  if (loading) {
+//   return <Spinner size="12" color="black" text="Loading product..." />;
+// }
+
+if (loading) {
+  return <ProductDetailsSkeleton />;
+}
+
 
 
   return (
     <>
-      <div className="container mx-auto px-5 mt-25">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="flex flex-col lg:flex-row gap-4 h-full">
-           
+      <div className="container mx-auto px-2 mt-25 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1">
+          <div className="flex flex-col lg:flex-row gap-3 h-full">
             <div className="flex order-1 ">
               <img
                 src={bgimg}
@@ -60,30 +60,125 @@ const ProductDetails = () => {
               />
             </div>
 
-             <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full">
+            <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full">
               {images.map((i, index) => (
                 <img
                   key={index}
                   src={i}
                   alt="thumb"
-                  className="w-full h-39 sm:w-full sm:h-32 lg:w-56  lg:h-51
-                       object-cover cursor-pointer border
-                       hover:border-black transition"
+                  className="w-full h-39 sm:w-full sm:h-32 lg:w-56 md:h-[50vh] lg:h-51
+                       object-cover cursor-pointer"
                   onMouseEnter={(e) => setBgImg(e.target.src)}
                 />
               ))}
             </div>
-
           </div>
 
-          <div className="details flex flex-col justify-h-full ">
-            <h5 className="text-2xl font-semibold text-black mb-2">
-              {product?.name}
+          <div className=" flex flex-col justify-h-full space-y-3">
+            <h5 className="md:text-2xl  text-xl  font-semibold text-black pt-2 mb-1">
+              {product?.name.toUpperCase()}
             </h5>
 
-            <p className="text-gray-600 mb-4">{product?.description}</p>
+            <div className="flex products-center ">
+              <div style={{ color: "#ff9800", fontSize: "18px" }}>★★★★★</div>
+              <span className="ms-2 text-muted">(110)</span>
+            </div>
+           
 
-            <p className="text-xl font-bold text-black">₹{product?.price}</p>
+            <div className="flex products-center gap-2">
+                      <span className=" font-bold text-gray-900">
+                        ₹ {product.price}
+                      </span>
+
+                      {product.originalPrice > product.price && (
+                        <>
+                          <span className="  text-gray-400 line-through">
+                            ₹ {product.originalPrice}
+                          </span>
+
+                          <span className="  font-semibold text-green-600">
+                            {Math.round(
+                              ((product.originalPrice - product.price) /
+                                product.originalPrice) *
+                                100,
+                            )}
+                            % OFF
+                          </span>
+                        </>
+                      )}
+                    </div>
+
+            <div className="py-1">
+              <h6 className="font-bold text-gray-500 mb-2">Select Size</h6>
+
+              <div className="flex gap-2 flex-wrap ">
+                {["S", "M", "L", "XL", "XXL"].map((size) => (
+                  <button
+                    key={size}
+                    className="border border-gray-400 text-gray-700 py-1 md:px-4 md:py-2 rounded hover:bg-gray-100 transition "
+                    onClick={() =>
+                      setSelectedSize((prev) => (prev === size ? "" : size))
+                    }
+                    style={{
+                      minWidth: "55px",
+                      backgroundColor:
+                        selectedSize === size ? "green" : "white",
+                      color: selectedSize === size ? "white" : "black",
+                    }}
+                  >
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-row gap-3 ">
+              <button className="px-1 py md:px-3  md:py-2 bg-black text-gray-300  font-semibold w-full md:w-40">
+                ADD TO CART
+              </button>
+              <button className="px-3 py-2 border border-black text-black font-semibold  w-40 ">
+                BUY NOW
+              </button>
+            </div>
+
+            <p className="space-y-3 text-gray-600 text-sm md:text-base mt-2">{product?.description}</p>
+
+            <div className="space-y-4 text-gray-600 text-sm md:text-base">
+              <p>
+                Lightweight and easy to layer, it pairs effortlessly with jeans,
+                chinos, or shorts for both casual 
+              </p>
+               <p>
+    Easy-care fabric allows for quick washing and minimal ironing
+  </p>
+              <p>Thoughtfully crafted for daily wear</p>
+            </div>
+
+            <div
+              className="mb-4 p-3 mt-4"
+              style={{
+                background: "linear-gradient(145deg, #f8f9fa, #e9ecef)",
+                borderRadius: "12px",
+                border: "1px solid #dee2e6",
+              }}
+            >
+              <div className="d-flex align-products-start mb-2">
+                <span style={{ color: "#11998e", marginRight: "8px" }}>✓</span>
+                <small className="text-secondary">100% Original product</small>
+              </div>
+              <div className="d-flex align-products-start mb-2">
+                <span style={{ color: "#11998e", marginRight: "8px" }}>✓</span>
+                <small className="text-secondary">
+                  Cash on delivery available
+                </small>
+              </div>
+              <div className="d-flex align-products-start mb-5">
+                <span style={{ color: "#11998e", marginRight: "8px" }}>✓</span>
+                <small className="text-secondary">
+                  Easy return and exchange within 7 days
+                </small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
