@@ -8,8 +8,10 @@ import { Navigation, FreeMode } from "swiper/modules";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate()
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration for the animations
@@ -17,7 +19,7 @@ const Home = () => {
     });
   }, []);
   const categories = [
-    { img: "img1.jpg", title: "Mens" },
+    { img: "img1.jpg", title: "Mens" , path:"/mens"},
     { img: "img2.jpg", title: "Womens" },
     { img: "img3.jpg", title: "Kids" },
   ];
@@ -79,6 +81,7 @@ const Home = () => {
         {categories.map((i, index) => (
           <div
             key={index}
+            onClick={() => navigate(i.path)}
             className="relative w-full  overflow-hidden rounded-md"
           >
             <img
