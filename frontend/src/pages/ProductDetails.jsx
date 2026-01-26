@@ -59,7 +59,7 @@ const ProductDetails = () => {
       
       try {
 
-        const response = await axios.post("http://localhost:8080/api/cart", item,{
+        const response = await axios.post("https://clothingwebsitebackend.onrender.com/api/cart", item,{
           headers:{
             Authorization:"Bearer " + token
           }
