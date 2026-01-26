@@ -5,12 +5,12 @@ import Contact from "./pages/contact/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
-import Cart from "./pages/Cart/Cart.jsx";
-import Mens from "./pages/Mens/Mens.jsx";
+import Cart from "./pages/cart/Cart.jsx";
+import Mens from "./pages/mens/Mens.jsx";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Home from "./pages/Home/Home.jsx";
+import Home from "./pages/home/Home.jsx";
 import AddNewProduct from "./pages/admin/AddNewProduct.jsx";
 import Products from "./pages/admin/Products.jsx";
 import "./App.css";
