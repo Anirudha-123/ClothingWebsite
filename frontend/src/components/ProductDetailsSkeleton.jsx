@@ -6,7 +6,7 @@ const ProductDetailsSkeleton = () => {
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="flex flex-col lg:flex-row gap-3">
-          <div className="w-full bg-gray-300 animate-pulse rounded-md h-130 sm:h-100 md:h-125 lg:h-[150]" />
+          <div className="w-full bg-gray-300 animate-pulse rounded-md aspect-[3/4] sm:h-100 md:h-125 lg:h-[150]" />
 
           <div className="flex flex-row lg:flex-col gap-2 ">
             {[1, 2, 3].map((_, idx) => (
