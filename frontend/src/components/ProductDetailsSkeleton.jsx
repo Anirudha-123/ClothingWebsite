@@ -8,7 +8,7 @@ const ProductDetailsSkeleton = () => {
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="w-full bg-gray-300 animate-pulse rounded-md h-90 sm:h-100 md:h-125 lg:h-[150]" />
 
-          <div className="flex flex-col lg:flex-col gap-2 ">
+          <div className="flex flex-row lg:flex-col gap-2 ">
             {[1, 2, 3].map((_, idx) => (
               <div
                 key={idx}
