@@ -7,8 +7,8 @@ const UseProducts = (category) => {
   const [products, setProducts] = useState([]);
 
   const url = category 
-  ? `http://localhost:8080/api/products/get?category=${category}`
-  : `http://localhost:8080/api/products/get`;
+  ? `https://clothingwebsitebackend.onrender.com/api/products/get?category=${category}`
+  : `https://clothingwebsitebackend.onrender.com/api/products/get`;
 
 
   useEffect(() => {
