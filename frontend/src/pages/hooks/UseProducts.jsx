@@ -6,13 +6,16 @@ const UseProducts = (category) => {
     const [hasFeched, setHasfetched] = useState(false);
   const [products, setProducts] = useState([]);
 
+  const url = category 
+  ? `http://localhost:8080/api/products/get?category=${category}`
+  : `http://localhost:8080/api/products/get`;
+
+
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(
-          `https://clothingwebsitebackend.onrender.com/api/products/get?category=${category}`
-        );
+        const response = await axios.get(url);
 
         setProducts(response.data.products);
       } catch (error) {
@@ -26,7 +29,7 @@ const UseProducts = (category) => {
     fetchProducts();
   }, [category]);
 
-  return {products , loading, hasFeched};
+  return {products , loading, hasFeched, setProducts};
 };
 
 export default UseProducts;

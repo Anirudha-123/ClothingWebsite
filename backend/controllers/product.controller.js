@@ -1,6 +1,6 @@
 import { uploadOnCloudinary } from "../config/cloudinary.js";
 import Product from "../models/product.model.js";
-//bk
+
 const addProduct = async (req, res) => {
   try {
     const { name, description, price, category, subCategory,originalPrice, quantity } = req.body;
@@ -51,6 +51,41 @@ const addProduct = async (req, res) => {
   }
 };
 
+const updateProduct = async (req, res) => {
+  try {
+    const { name, price } = req.body;
+
+    const updateData = { name, price };
+
+    if (req.file?.path) {
+      const img = await uploadOnCloudinary(req.file.path);
+
+      if (!img?.secure_url) {
+        return res.status(500).json({
+          message: "error while uploading image",
+        });
+      }
+
+      updateData.img = img.secure_url;
+    }
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      req.params.id,
+      { $set: updateData },
+      { new: true }
+    );
+
+    res.json({
+      message: "product updated successfully",
+      product: updatedProduct,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "server error" });
+  }
+};
+
+
 const getAllProducts = async (req, res) => {
   try {
 
@@ -100,4 +135,29 @@ const getProductById = async (req,res) => {
   }
 }
 
-export { addProduct, getAllProducts ,getProductById };
+
+ const deleteProductById  = async (req, res) => {
+  
+  try {
+
+  const product =    await Product.findByIdAndDelete(req.params.id)
+
+
+  if(!product){
+
+    res.status(404).json({message:"product not found to delete"})
+  }
+
+
+  res.status(201).json({message:"product deleted successfully"})
+
+
+
+    
+  } catch (error) {
+    
+    console.error(error)
+  }
+}
+
+export { addProduct, getAllProducts ,getProductById, deleteProductById , updateProduct};

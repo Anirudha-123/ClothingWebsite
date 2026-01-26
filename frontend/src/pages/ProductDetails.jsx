@@ -2,13 +2,17 @@ import axios from "axios";
 import React, { useDebugValue, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
+
 import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
 import { addToCart } from "../redux/ProductSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import { useLoginModal } from "../context/LoginModal";
 
 const ProductDetails = () => {
   const { id } = useParams();
+    const {setLoginModalOpen} = useLoginModal()
+
   const navigate = useNavigate();
   const dispatch = useDispatch()
 
@@ -23,7 +27,7 @@ const ProductDetails = () => {
     const getProduct = async (params) => {
       try {
         const response = await axios.get(
-          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
+          `http://localhost:8080/api/products/${id}`,
         );
 
         setProduct(response.data.product);
@@ -41,9 +45,44 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
+
+
+    const addToCart = async (item) => {
+
+      const token = JSON.parse(localStorage.getItem("login"))
+
+      if(!token){
+
+        setLoginModalOpen(true)
+        return
+      }
+      
+      try {
+
+        const response = await axios.post("http://localhost:8080/api/cart", item,{
+          headers:{
+            Authorization:"Bearer " + token
+          }
+        })
+
+        if(response.status === 200 || response.status === 201){
+
+          navigate("/cart")
+        }
+        
+      } catch (error) {
+        
+        console.error(error)
+      }
+    }
+
+  
+  
+
   if (loading) {
     return <ProductDetailsSkeleton />;
   }
+
 
   return (
     <>
@@ -164,10 +203,7 @@ const ProductDetails = () => {
             <div className="flex flex-row gap-3 ">
               <button
                 className="px-1 py md:px-3  md:py-2 bg-black text-gray-300  font-semibold w-full md:w-40"
-                onClick={() => {
-                  dispatch(addToCart(product));
-                  toast.success("Product addded to cart");
-                }}
+                onClick={() =>addToCart(product)}
               >
                 ADD TO CART
               </button>

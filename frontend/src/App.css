@@ -16,3 +16,19 @@ html,
 body {
   scroll-behavior: smooth;
 }
+
+
+@media (max-width: 767px) {
+  .Toastify__toast-container {
+    display: none !important;
+  }
+}
+/* Industry standard: hide scroll and prevent "jump" */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh;
+}
+html {
+  scrollbar-gutter: stable;
+}
+

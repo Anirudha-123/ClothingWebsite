@@ -10,7 +10,7 @@ const Mens = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Duration for the animations
-      // once: true, // Animation triggers once
+      once: true, // Animation triggers once
     });
   }, []);
   const { products, loading, hasFeched } = UseProducts("mens");
@@ -18,11 +18,11 @@ const Mens = () => {
 
   return (
     <div>
-      <div className="relative pb-4">
+      <div className="relative pb-2">
         <img
           src="/bo3.jpeg"
           alt="mensImg"
-          className="w-full h-[30vh] md:h-[70vh] lg:h-[70vh] object-cover"
+          className="w-full h-[30vh] md:h-[60vh] lg:h-[60vh] object-cover"
         />
       </div>
 
@@ -62,6 +62,8 @@ const Mens = () => {
                   <img
                     src={item.img}
                     alt={item.name}
+                      loading="lazy"
+
                     className="w-full  aspect-3/4 object-cover "
                   />
 

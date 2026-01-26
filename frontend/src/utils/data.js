@@ -4,6 +4,8 @@ export const navLink = [
   { name: "Womens" },
   { name: "Kids" },
   { name: "Cart" , path:"/cart" },
+  { name: "Products" , path:"/admin/products" },
+  { name: "Add Product" , path:"/admin/addProduct" },
 ];
 
 export const megaMenu = {
