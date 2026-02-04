@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
     const addToCart = async (item) => {
 
-      const token = JSON.parse(localStorage.getItem("login"))
+      const token = (localStorage.getItem("token"))
 
       if(!token){
 
