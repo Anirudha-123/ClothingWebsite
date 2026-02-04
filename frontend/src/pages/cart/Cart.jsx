@@ -13,14 +13,22 @@ const Cart = () => {
   const dispatch = useDispatch();
   const { setLoginModalOpen } = useLoginModal();
 
+    const token = localStorage.getItem("token");
+
+
   useEffect(() => {
     console.log("hii");
+
+
+      if (!token) {
+        setLoginModalOpen(true);
+        return;
+      }
   }, []);
 
   localStorage.getItem("token");
   useEffect(() => {
     const getCart = async () => {
-      const token = localStorage.getItem("token");
 
       if (!token) {
         setLoginModalOpen(true);
