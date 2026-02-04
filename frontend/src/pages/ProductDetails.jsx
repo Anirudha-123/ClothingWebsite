@@ -27,7 +27,7 @@ const ProductDetails = () => {
     const getProduct = async (params) => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/products/${id}`,
+          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
         );
 
         setProduct(response.data.product);
@@ -45,32 +45,37 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
-  const addToCart = async (item) => {
-    const token = (localStorage.getItem("token"));
+    const addToCart = async (item) => {
 
-    if (!token) {
-      setLoginModalOpen(true);
-      return;
-    }
+      const token = JSON.parse(localStorage.getItem("login"))
 
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/cart",
-        item,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        },
-      );
+      if(!token){
 
-      if (response.status === 200 || response.status === 201) {
-        navigate("/cart");
+        setLoginModalOpen(true)
+        return
       }
-    } catch (error) {
-      console.error(error);
+      
+      try {
+
+        const response = await axios.post("http://localhost:8080/api/cart", item,{
+          headers:{
+            Authorization:"Bearer " + token
+          }
+        })
+
+        if(response.status === 200 || response.status === 201){
+
+          navigate("/cart")
+        }
+        
+      } catch (error) {
+        
+        console.error(error)
+      }
     }
-  };
+
+  
+  
 
   if (loading) {
     return <ProductDetailsSkeleton />;
