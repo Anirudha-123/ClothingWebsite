@@ -1,9 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLoginModal } from "../../context/LoginModal";
 import axios from "axios";
 
+import {useNavigate} from "react-router-dom"
 const Login = () => {
+  const navigate  = useNavigate()
+  const [formData , setFormData] = useState({email:"", password:""});
   const { isLoginModalOpen, setLoginModalOpen } = useLoginModal();
+
+
+
+  const handleChange = (e) => {
+
+    setFormData({...formData, [e.target.name]:e.target.value})
+  }
+
+
   useEffect(() => {
     if (isLoginModalOpen) {
       document.body.classList.add("no-scroll");
@@ -21,11 +33,22 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "http://localhost:8080/api/users/login",formData
       );
 
+      console.log(response.data)
+
       if (response.status === 200 || response.status === 201) {
-        navigate("/");
+
+        localStorage.setItem("token", response.data.token);
+
+console.log(
+  "TOKEN FROM LOCALSTORAGE:",
+  localStorage.getItem("token")
+);
+
+        navigate("/cart");
+
       }
 
       setLoginModalOpen(false);
@@ -56,12 +79,18 @@ const Login = () => {
               type="text"
               className="px-4 py-2 w-full border-2 border-gray-200 hover:border-gray-400 outline-none"
               placeholder="Enter email here"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
             />
 
             <input
               type="text"
               className="px-4 py-2 w-full  border-2 border-gray-200 hover:border-gray-400 outline-none"
               placeholder="Enter password here"
+                name="password"
+              value={formData.password}
+              onChange={handleChange}
             />
 
             <button className="px-3 py-2 w-full bg-blue-400 hover:bg-blue-500 ">

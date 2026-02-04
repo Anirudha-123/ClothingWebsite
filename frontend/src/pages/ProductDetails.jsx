@@ -11,10 +11,10 @@ import { useLoginModal } from "../context/LoginModal";
 
 const ProductDetails = () => {
   const { id } = useParams();
-    const {setLoginModalOpen} = useLoginModal()
+  const { setLoginModalOpen } = useLoginModal();
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState("");
@@ -45,44 +45,36 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
+  const addToCart = async (item) => {
+    const token = (localStorage.getItem("token"));
 
-
-    const addToCart = async (item) => {
-
-      const token = JSON.parse(localStorage.getItem("login"))
-
-      if(!token){
-
-        setLoginModalOpen(true)
-        return
-      }
-      
-      try {
-
-        const response = await axios.post("http://localhost:8080/api/cart", item,{
-          headers:{
-            Authorization:"Bearer " + token
-          }
-        })
-
-        if(response.status === 200 || response.status === 201){
-
-          navigate("/cart")
-        }
-        
-      } catch (error) {
-        
-        console.error(error)
-      }
+    if (!token) {
+      setLoginModalOpen(true);
+      return;
     }
 
-  
-  
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/cart",
+        item,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        },
+      );
+
+      if (response.status === 200 || response.status === 201) {
+        navigate("/cart");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (loading) {
     return <ProductDetailsSkeleton />;
   }
-
 
   return (
     <>
@@ -203,7 +195,10 @@ const ProductDetails = () => {
             <div className="flex flex-row gap-3 ">
               <button
                 className="px-1 py md:px-3  md:py-2 bg-black text-gray-300  font-semibold w-full md:w-40"
-                onClick={() =>addToCart(product)}
+                onClick={() =>  addToCart({
+      cartProduct: product._id,
+      quantity: 1,
+    })}
               >
                 ADD TO CART
               </button>

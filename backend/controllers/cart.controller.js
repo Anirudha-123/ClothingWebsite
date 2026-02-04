@@ -20,9 +20,15 @@ const addToCart = async (req, res) => {
         ],
       });
     } else {
+      // let itemIdex = cart.items.findIndex(
+      //   (i) => i.cartProduct.toString() === cartProduct.toString(),
+      // );
       let itemIdex = cart.items.findIndex(
-        (i) => i.cartProduct.toString() === cartProduct,
-      );
+  (i) =>
+    i.cartProduct &&
+    i.cartProduct.toString() === cartProduct.toString()
+);
+
 
       if (itemIdex > -1) {
         cart.items[itemIdex].quantity += qty;
