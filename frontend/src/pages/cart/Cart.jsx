@@ -28,7 +28,7 @@ const Cart = () => {
       }
 
       try {
-        const response = await axios.get("http://localhost:8080/api/cart/get", {
+        const response = await axios.get("https://clothingwebsitebackend.onrender.com/api/cart/get", {
           headers: {
             Authorization: "Bearer " + token,
           },
