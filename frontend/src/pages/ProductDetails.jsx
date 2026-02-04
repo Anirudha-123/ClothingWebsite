@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
-import { addToCart } from "../redux/ProductSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useLoginModal } from "../context/LoginModal";
