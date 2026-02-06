@@ -221,18 +221,28 @@ const Cart = () => {
   const navigate = useNavigate();
   const { setLoginModalOpen } = useLoginModal();
 
-  // Fetch cart from backend
+    const token = localStorage.getItem("token");
+
+
+  useEffect(() => {
+    console.log("hii");
+  }, []);
+
+  localStorage.getItem("token");
   useEffect(() => {
     const getCart = async () => {
       const token = localStorage.getItem("token");
-      const guestId = localStorage.getItem("guestId");
+
+      if (!token) {
+        setLoginModalOpen(true);
+        return;
+      }
 
       try {
-        const res = await axios.get("http://localhost:8080/api/cart/get", {
-          params: { guestId },
-          headers: token
-            ? { Authorization: "Bearer " + token }
-            : {},
+        const response = await axios.get("http://localhost:8080/api/cart/get", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
         });
 
         setCart(res.data?.cart?.items || []);

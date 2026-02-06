@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 import ProductDetailsSkeleton from "../components/ProductDetailsSkeleton";
-import { addToCart } from "../redux/ProductSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useLoginModal } from "../context/LoginModal";
@@ -49,6 +48,10 @@ const ProductDetails = () => {
   }, []);
 
 
+<<<<<<< HEAD
+=======
+      const token = localStorage.getItem("token")
+>>>>>>> b3571feb0423f820fa1f95d8cb1673e18342d9b5
 
 const getGuestId = () => {
   let guestId = localStorage.getItem("guestId");
@@ -60,6 +63,14 @@ const getGuestId = () => {
 };
 
 
+<<<<<<< HEAD
+=======
+        const response = await axios.post("https://clothingwebsitebackend.onrender.com/api/cart", item,{
+          headers:{
+            Authorization:"Bearer " + token
+          }
+        })
+>>>>>>> b3571feb0423f820fa1f95d8cb1673e18342d9b5
 
 const addToCart = async (item) => {
   const token = localStorage.getItem("token");
