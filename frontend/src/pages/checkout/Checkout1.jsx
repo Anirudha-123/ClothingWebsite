@@ -504,7 +504,7 @@ const Checkout1 = () => {
   /* ---------------- FETCH CART ---------------- */
   useEffect(() => {
     const fetchCart = async () => {
-      const res = await axios.get("http://localhost:8080/api/cart/get", {
+      const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/cart/get", {
         headers: { Authorization: token ? "Bearer " + token : "" },
         params: { guestId },
       });
@@ -524,7 +524,7 @@ const Checkout1 = () => {
   /* ---------------- FETCH ADDRESSES ---------------- */
   useEffect(() => {
     const fetchAddresses = async () => {
-      const res = await axios.get("http://localhost:8080/api/address", {
+      const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/address", {
         headers: { Authorization: "Bearer " + token },
       });
 
@@ -542,7 +542,7 @@ const Checkout1 = () => {
 
   const saveNewAddress = async () => {
     const res = await axios.post(
-      "http://localhost:8080/api/address",
+      "https://clothingwebsitebackend.onrender.com/api/address",
       newAddress,
       { headers: { Authorization: "Bearer " + token } },
     );
@@ -558,7 +558,7 @@ const Checkout1 = () => {
     if (!selectedAddress) return alert("Select address");
 
     await axios.post(
-      "http://localhost:8080/api/order/place",
+      "https://clothingwebsitebackend.onrender.com/api/order/place",
       {
         shippingAddress: selectedAddress,
         paymentMethod: "COD",
