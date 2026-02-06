@@ -232,7 +232,7 @@ const Cart = () => {
       const guestId = localStorage.getItem("guestId");
 
       try {
-        const res = await axios.get("http://localhost:8080/api/cart/get", {
+        const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/cart/get", {
           params: { guestId },
           headers: token
             ? { Authorization: "Bearer " + token }
