@@ -210,6 +210,10 @@
 // export default Cart;
 
 
+
+
+
+
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -221,28 +225,18 @@ const Cart = () => {
   const navigate = useNavigate();
   const { setLoginModalOpen } = useLoginModal();
 
-    const token = localStorage.getItem("token");
-
-
-  useEffect(() => {
-    console.log("hii");
-  }, []);
-
-  localStorage.getItem("token");
+  // Fetch cart from backend
   useEffect(() => {
     const getCart = async () => {
       const token = localStorage.getItem("token");
-
-      if (!token) {
-        setLoginModalOpen(true);
-        return;
-      }
+      const guestId = localStorage.getItem("guestId");
 
       try {
-        const response = await axios.get("http://localhost:8080/api/cart/get", {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
+        const res = await axios.get("http://localhost:8080/api/cart/get", {
+          params: { guestId },
+          headers: token
+            ? { Authorization: "Bearer " + token }
+            : {},
         });
 
         setCart(res.data?.cart?.items || []);
@@ -414,4 +408,5 @@ const Cart = () => {
 };
 
 export default Cart;
+
 
