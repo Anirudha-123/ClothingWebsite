@@ -269,7 +269,7 @@ const Header = () => {
                 <span className="text-white border-b border-gray-500 pb-2">
                   Shorts
                 </span>
-                <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token");}>
+                <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token")}>
                   Logout
                 </span>
                 <Link
