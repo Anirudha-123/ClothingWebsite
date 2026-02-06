@@ -117,9 +117,13 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex">
-            <button className="bg-blue-500 text-white transition font-bold px-3 py-2 md:px-5 md:py-2">
+            {/* <button className="bg-blue-500 text-white transition font-bold px-3 py-2 md:px-5 md:py-2">
               Login
-            </button>
+            </button> */}
+
+             <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token");}>
+                  Logout
+                </span>
           </div>
 
           <button
@@ -265,8 +269,8 @@ const Header = () => {
                 <span className="text-white border-b border-gray-500 pb-2">
                   Shorts
                 </span>
-                <span className="text-white border-b border-gray-500 pb-2">
-                  Jackets
+                <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token");}>
+                  Logout
                 </span>
                 <Link
                   to={"/contact"}
