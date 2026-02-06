@@ -65,7 +65,7 @@ const addToCart = async (item) => {
   const guestId = getGuestId();
 
   await axios.post(
-    "http://localhost:8080/api/cart",
+    "https://clothingwebsitebackend.onrender.com/api/cart",
     {
       ...item,
       guestId,

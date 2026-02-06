@@ -272,7 +272,7 @@ const Cart = () => {
     try {
       // Update quantity in backend
       await axios.put(
-        "http://localhost:8080/api/cart/update",
+        "https://clothingwebsitebackend.onrender.com/api/cart/update",
         { itemId, quantity: newQty, guestId },
         { headers: token ? { Authorization: "Bearer " + token } : {} }
       );
