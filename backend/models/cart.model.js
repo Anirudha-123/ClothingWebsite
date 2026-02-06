@@ -1,27 +1,60 @@
+// import mongoose from "mongoose";
+
+
+// const cartSchema = new mongoose.Schema({
+
+
+//   userId:{
+//     type:mongoose.Schema.Types.ObjectId,
+//     ref:"User"
+//   },
+
+//   items:[{
+     
+//     cartProduct:{
+//       type:mongoose.Schema.Types.ObjectId,
+//       ref:"Product"
+//     },
+
+//     quantity:{
+//       type:Number,
+//       default:1
+//     }
+//   } ]
+
+// },{timestamps:true})
+
+// export const Cart = mongoose.model("Cart", cartSchema)
+
 import mongoose from "mongoose";
 
-
-const cartSchema = new mongoose.Schema({
-
-
-  userId:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"User"
-  },
-
-  items:[{
-     
-    cartProduct:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"Product"
+const cartSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
 
-    quantity:{
-      type:Number,
-      default:1
-    }
-  } ]
+    guestId: {
+      type: String,
+      default: null,
+    },
 
-},{timestamps:true})
+    items: [
+      {
+        cartProduct: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        quantity: {
+          type: Number,
+          default: 1,
+        },
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-export const Cart = mongoose.model("Cart", cartSchema)
+export const Cart = mongoose.model("Cart", cartSchema);

@@ -55,7 +55,7 @@ const Mens = () => {
               {products.map((item, index) => (
                 <div
                   key={index}
-                  data-aos="fade-up"
+                  
 
                   onClick={() => navigate(`/product/${item._id}`)}
                 >

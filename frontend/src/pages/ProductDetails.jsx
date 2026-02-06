@@ -8,6 +8,7 @@ import { addToCart } from "../redux/ProductSlice";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { useLoginModal } from "../context/LoginModal";
+import { v4 as uuidv4 } from "uuid";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -22,6 +23,8 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
   const [bgimg, setBgImg] = useState(null);
   const images = ["/bo4.jpeg", "/bo5.jpeg", "/bo6.jpeg"];
+
+
 
   useEffect(() => {
     const getProduct = async (params) => {
@@ -45,34 +48,71 @@ const ProductDetails = () => {
     setBgImg(images[0]);
   }, []);
 
-    const addToCart = async (item) => {
 
-      const token = JSON.parse(localStorage.getItem("login"))
 
-      if(!token){
+const getGuestId = () => {
+  let guestId = localStorage.getItem("guestId");
+  if (!guestId) {
+    guestId = uuidv4();
+    localStorage.setItem("guestId", guestId);
+  }
+  return guestId;
+};
 
-        setLoginModalOpen(true)
-        return
-      }
-      
-      try {
 
-        const response = await axios.post("http://localhost:8080/api/cart", item,{
-          headers:{
-            Authorization:"Bearer " + token
-          }
-        })
 
-        if(response.status === 200 || response.status === 201){
+const addToCart = async (item) => {
+  const token = localStorage.getItem("token");
+  const guestId = getGuestId();
 
-          navigate("/cart")
-        }
-        
-      } catch (error) {
-        
-        console.error(error)
-      }
+  await axios.post(
+    "http://localhost:8080/api/cart",
+    {
+      ...item,
+      guestId,
+    },
+    {
+      headers: token
+        ? { Authorization: "Bearer " + token }
+        : {},
     }
+  );
+
+  navigate("/cart");
+};
+
+
+
+
+
+    // const addToCart = async (item) => {
+
+    //   const token = JSON.parse(localStorage.getItem("login"))
+
+    //   if(!token){
+
+    //     setLoginModalOpen(true)
+    //     return
+    //   }
+      
+    //   try {
+
+    //     const response = await axios.post("http://localhost:8080/api/cart", item,{
+    //       headers:{
+    //         Authorization:"Bearer " + token
+    //       }
+    //     })
+
+    //     if(response.status === 200 || response.status === 201){
+
+    //       navigate("/cart")
+    //     }
+        
+    //   } catch (error) {
+        
+    //     console.error(error)
+    //   }
+    // }
 
   
   

@@ -32,7 +32,7 @@ const Header = () => {
           </h3>
         </Link>
 
-        <nav className="hidden md:flex space-x-6 font-semibold h-full">
+        <nav className="hidden lg:flex space-x-6 font-semibold h-full">
           {navLink.map((nav) => (
             <div
               key={nav.name}

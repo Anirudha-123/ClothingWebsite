@@ -16,6 +16,10 @@ import Products from "./pages/admin/Products.jsx";
 import "./App.css";
 import { LoginModalProvider } from "./context/LoginModal.jsx";
 import Login from "./pages/modal/Login.jsx";
+import OrderSuccess from "./components/OrderSuccess.jsx";
+import Checkout1 from "./pages/checkout/Checkout1.jsx";
+import Orders from "./pages/order/Orders.jsx";
+import OrderDetails from "./pages/order/OrderDetails.jsx";
 
 function App() {
   return (
@@ -34,8 +38,12 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/mens" element={<Mens></Mens>}></Route>
+            <Route path="/orderSuccess" element={<OrderSuccess></OrderSuccess>}></Route>
+            <Route path="/orders" element={<Orders></Orders>}></Route>
+<Route path="/orders/:id" element={<OrderDetails />} />
             <Route path="/" element={<Home></Home>}></Route>
             <Route path="/cart" element={<Cart></Cart>}></Route>
+            <Route path="/checkout1" element={<Checkout1></Checkout1>}></Route>
             <Route path="/contact" element={<Contact></Contact>}></Route>
             <Route path="/mens" element={<Mens></Mens>}></Route>
             <Route

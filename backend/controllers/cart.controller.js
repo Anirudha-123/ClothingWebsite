@@ -1,59 +1,107 @@
+// import { Cart } from "../models/cart.model.js";
+
+// const addToCart = async (req, res) => {
+//   try {
+//     const { cartProduct, quantity } = req.body;
+
+//     const qty = Number(quantity);
+//     const userId = req.user._id;
+
+//     let cart = await Cart.findOne({ userId });
+
+//     if (!cart) {
+//       cart = await Cart.create({
+//         userId,
+//         items: [
+//           {
+//             cartProduct,
+//             quantity,
+//           },
+//         ],
+//       });
+//     } else {
+//       // let itemIdex = cart.items.findIndex(
+//       //   (i) => i.cartProduct.toString() === cartProduct.toString(),
+//       // );
+//       let itemIdex = cart.items.findIndex(
+//   (i) =>
+//     i.cartProduct &&
+//     i.cartProduct.toString() === cartProduct.toString()
+// );
+
+
+//       if (itemIdex > -1) {
+//         cart.items[itemIdex].quantity += qty;
+//       } else {
+//         cart.items.push({ cartProduct, quantity: qty });
+//       }
+//     }
+
+//     await cart.save();
+
+//     // const updatedCart = await Cart.findById(cart._id).populate({path:"items.cartProduct" , model:"Product"})
+
+//     const updatedCart = await Cart.findById(cart._id).populate(
+//       "items.cartProduct",
+//       "name  price",
+//     );
+
+//     res.json({
+//       message: "product added to cart successfully",
+//       cart: updatedCart,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+
+
 import { Cart } from "../models/cart.model.js";
 
 const addToCart = async (req, res) => {
   try {
-    const { cartProduct, quantity } = req.body;
+    const { cartProduct, quantity = 1, guestId } = req.body;
 
-    const qty = Number(quantity);
-    const userId = req.user._id;
+    const userId = req.user?._id || null;
 
-    let cart = await Cart.findOne({ userId });
+    const query = userId ? { userId } : { guestId };
+
+    let cart = await Cart.findOne(query);
 
     if (!cart) {
       cart = await Cart.create({
         userId,
-        items: [
-          {
-            cartProduct,
-            quantity,
-          },
-        ],
+        guestId,
+        items: [{ cartProduct, quantity }],
       });
     } else {
-      // let itemIdex = cart.items.findIndex(
-      //   (i) => i.cartProduct.toString() === cartProduct.toString(),
-      // );
-      let itemIdex = cart.items.findIndex(
-  (i) =>
-    i.cartProduct &&
-    i.cartProduct.toString() === cartProduct.toString()
-);
+      const index = cart.items.findIndex(
+        (i) => i.cartProduct.toString() === cartProduct
+      );
 
-
-      if (itemIdex > -1) {
-        cart.items[itemIdex].quantity += qty;
+      if (index > -1) {
+        cart.items[index].quantity += quantity;
       } else {
-        cart.items.push({ cartProduct, quantity: qty });
+        cart.items.push({ cartProduct, quantity });
       }
     }
 
     await cart.save();
 
-    // const updatedCart = await Cart.findById(cart._id).populate({path:"items.cartProduct" , model:"Product"})
-
     const updatedCart = await Cart.findById(cart._id).populate(
       "items.cartProduct",
-      "name  price",
+      "name price img"
     );
 
-    res.json({
-      message: "product added to cart successfully",
-      cart: updatedCart,
-    });
+    res.json({ success: true, cart: updatedCart });
   } catch (error) {
-    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 };
+
+
+
 
 const incrementQty = async (req, res) => {
   try {
@@ -127,18 +175,37 @@ const decrementQty = async (req, res) => {
   }
 };
 
+// const getCart = async (req, res) => {
+//   try {
+//     const userId = req.user._id;
+
+//     const cart = await Cart.findOne({ userId }).populate(
+//       "items.cartProduct",
+//       "name price img",
+//     );
+
+//     res.json({ message: "cart fetch successfully", cart });
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
 const getCart = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const guestId = req.query.guestId;
+    const userId = req.user?._id || null;
 
-    const cart = await Cart.findOne({ userId }).populate(
+    const query = userId ? { userId } : { guestId };
+
+    const cart = await Cart.findOne(query).populate(
       "items.cartProduct",
-      "name price img",
+      "name price img"
     );
 
-    res.json({ message: "cart fetch successfully", cart });
+    res.json({ cart: cart || { items: [] } });
   } catch (error) {
-    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 };
+
 export { addToCart, getCart, incrementQty, decrementQty };
