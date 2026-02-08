@@ -100,6 +100,8 @@ const Checkout1 = () => {
       { headers: { Authorization: "Bearer " + token } },
     );
 
+    localStorage.removeItem("guestId");
+
     navigate("/orderSuccess");
   };
 
