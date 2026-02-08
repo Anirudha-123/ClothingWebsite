@@ -62,7 +62,7 @@ const authHeader = token
 const incrementItem = async (itemId) => {
   try {
     const res = await axios.post(
-      `http://localhost:8080/api/cart/increment/${itemId}`,
+      `https://clothingwebsitebackend.onrender.com/api/cart/increment/${itemId}`,
       {},
       {
         params: { guestId },
@@ -152,7 +152,7 @@ const incrementItem = async (itemId) => {
   if (currentQuantity === 1) {
     try {
       await axios.delete(
-        `http://localhost:8080/api/cart/remove/${itemId}`,
+        `https://clothingwebsitebackend.onrender.com/api/cart/remove/${itemId}`,
         {
           params: { guestId },
           headers: authHeader,
@@ -170,7 +170,7 @@ const incrementItem = async (itemId) => {
   // 🔽 NORMAL DECREMENT (qty > 1)
   try {
     const res = await axios.post(
-      `http://localhost:8080/api/cart/decrement/${itemId}`,
+      `https://clothingwebsitebackend.onrender.com/api/cart/decrement/${itemId}`,
       {},
       {
         params: { guestId },
