@@ -10,8 +10,10 @@ import {
   FiChevronRight,
   FiLogOut,
 } from "react-icons/fi";
+import { useLoginModal } from "../../context/LoginModal";
 
 const Profile = () => {
+  const {setLoginModalOpen} = useLoginModal()
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -57,9 +59,15 @@ const Profile = () => {
             </p>
           </div>
 
+          {/* const token = localStorage.getItem("token");
+    if (!token) {
+      setLoginModalOpen(true);
+      return;
+    } */}
+
           {!token && (
             <button
-              onClick={() => navigate("/login")}
+              onClick={() =>  setLoginModalOpen(true)}
               className="bg-pink-600 text-white px-5 py-2 rounded-md text-sm hover:bg-pink-700 transition"
             >
               Login
@@ -67,7 +75,7 @@ const Profile = () => {
           )}
         </div>
       </div>
-
+ 
       {/* MENU SECTION */}
       <div className="bg-white mt-3 shadow-sm divide-y">
         {/* Orders */}

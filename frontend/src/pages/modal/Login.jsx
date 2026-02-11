@@ -2,19 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLoginModal } from "../../context/LoginModal";
 import axios from "axios";
 
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const navigate  = useNavigate()
-  const [formData , setFormData] = useState({email:"", password:""});
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const { isLoginModalOpen, setLoginModalOpen } = useLoginModal();
 
-
-
   const handleChange = (e) => {
-
-    setFormData({...formData, [e.target.name]:e.target.value})
-  }
-
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     if (isLoginModalOpen) {
@@ -33,22 +29,18 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://clothingwebsitebackend.onrender.com/api/users/login",formData
+        "http://localhost:8080/api/users/login",
+        formData,
       );
 
-      console.log(response.data)
+      console.log(response.data);
 
       if (response.status === 200 || response.status === 201) {
-
         localStorage.setItem("token", response.data.token);
 
-console.log(
-  "TOKEN FROM LOCALSTORAGE:",
-  localStorage.getItem("token")
-);
+        console.log("TOKEN FROM LOCALSTORAGE:", localStorage.getItem("token"));
 
-        navigate("/cart");
-
+        // navigate("/cart");
       }
 
       setLoginModalOpen(false);
@@ -88,7 +80,7 @@ console.log(
               type="text"
               className="px-4 py-2 w-full  border-2 border-gray-200 hover:border-gray-400 outline-none"
               placeholder="Enter password here"
-                name="password"
+              name="password"
               value={formData.password}
               onChange={handleChange}
             />
