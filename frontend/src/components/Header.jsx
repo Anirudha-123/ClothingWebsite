@@ -148,7 +148,7 @@ const Header = () => {
           </div>
 
           <button
-            className="md:hidden text-2xl text-white"
+            className="md:hidden text-2xl text-white mx-2 "
             onClick={() => {
               setMobileOpen(true);
               setMobileCategory("Mens");
@@ -157,7 +157,7 @@ const Header = () => {
             ☰
           </button>
 
-          <div className="md:hidden text-2xl text-white ms-4"  onClick={() => navigate("/profile")}><FaRegUser />
+          <div className="md:hidden text-2xl text-white ms-3"  onClick={() => navigate("/profile")}><FaRegUser />
 </div>
         </div>
       </div>
