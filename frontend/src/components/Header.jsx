@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { megaMenu, navLink } from "../utils/data";
 import { Link, useNavigate } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
+import { FaRegUser } from "react-icons/fa";
+
 
 import { useEffect } from "react";
 const Header = () => {
@@ -12,16 +14,17 @@ const Header = () => {
 
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden"; // prevent background scroll
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"; // restore scroll
+      document.body.style.overflow = "auto";
     }
 
-    // cleanup when component unmounts
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [mobileOpen]);
+
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -109,21 +112,39 @@ const Header = () => {
           ☰
         </button> */}
 
-        <div className=" flex gap-4 items-center ">
+        <div className=" flex  items-center ">
           <div className="">
             <button className=" text-white transition font-bold px-3 py-2 md:px-5 md:py-2 flex items-center justify-center">
-              <IoCartOutline size={28} className="text-lg md:text-xl" onClick={() => navigate("/cart")}/>
+              <IoCartOutline
+                size={28}
+                className="text-lg md:text-xl"
+                onClick={() => navigate("/cart")}
+              />
             </button>
           </div>
 
           <div className="hidden md:flex">
-            {/* <button className="bg-blue-500 text-white transition font-bold px-3 py-2 md:px-5 md:py-2">
-              Login
-            </button> */}
+            {token ? (
+              <>
+               
 
-             <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token")}>
+                  <span
+                  className="text-white border-b border-gray-500 pb-2"
+                  onClick={() => localStorage.removeItem("token")}
+                >
                   Logout
                 </span>
+              
+              </>
+            ) : (
+              <>
+
+                <button className="bg-blue-500 text-white transition font-bold px-3 py-2 md:px-5 md:py-2">
+                  Login
+                </button>
+              
+              </>
+            )}
           </div>
 
           <button
@@ -135,6 +156,9 @@ const Header = () => {
           >
             ☰
           </button>
+
+          <div className="md:hidden text-2xl text-white ms-4"  onClick={() => navigate("/profile")}><FaRegUser />
+</div>
         </div>
       </div>
 
@@ -269,7 +293,10 @@ const Header = () => {
                 <span className="text-white border-b border-gray-500 pb-2">
                   Shorts
                 </span>
-                <span className="text-white border-b border-gray-500 pb-2" onClick={() => localStorage.removeItem("token")}>
+                <span
+                  className="text-white border-b border-gray-500 pb-2"
+                  onClick={() => localStorage.removeItem("token")}
+                >
                   Logout
                 </span>
                 <Link

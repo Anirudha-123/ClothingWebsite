@@ -16,7 +16,7 @@ const Orders = () => {
     const fetchOrders = async () => {
       try {
         const res = await axios.get(
-          "https://clothingwebsitebackend.onrender.com/api/order/my-orders",
+          "http://localhost:8080/api/order/my-orders",
           {
             headers: { Authorization: "Bearer " + token },
           },
@@ -37,15 +37,51 @@ if (loading) {
 }
 
 
-  if (!orders.length) {
-    return <div className="p-6 text-center">No orders found</div>;
-  }
+  if (!orders || orders.length === 0) {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[70vh] bg-gray-100 text-center px-4">
+      
+      <div className="bg-white p-6 rounded-full shadow-md mb-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-16 w-16 text-gray-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M9 17v-6h13M9 7h13M5 7h.01M5 17h.01M9 12h13"
+          />
+        </svg>
+      </div>
+
+      <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        No Orders Yet
+      </h2>
+
+      <p className="text-gray-500 max-w-md mb-6">
+        You haven’t placed any orders yet. Start shopping and your orders
+        will appear here.
+      </p>
+
+      <button
+        onClick={() => navigate("/")}
+        className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+      >
+        Continue Shopping
+      </button>
+    </div>
+  );
+}
+
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* HEADER */}
-      <div className="bg-white p-4 flex items-center gap-3 shadow-sm">
-        <button onClick={() => navigate(-1)} className="text-xl">
+      <div className="bg-white p-4 flex items-center gap-3 shadow-sm pt-20" onClick={() => navigate("/")}>
+        <button  className="text-xl">
           ←
         </button>
         <h1 className="text-lg font-semibold">My Orders</h1>

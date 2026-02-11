@@ -20,6 +20,8 @@ import OrderSuccess from "./components/OrderSuccess.jsx";
 import Checkout1 from "./pages/checkout/Checkout1.jsx";
 import Orders from "./pages/order/Orders.jsx";
 import OrderDetails from "./pages/order/OrderDetails.jsx";
+import Profile from "./pages/profile/Profile.jsx";
+import Settings from "./pages/settings/Settings.jsx";
 
 function App() {
   return (
@@ -46,6 +48,8 @@ function App() {
             <Route path="/checkout1" element={<Checkout1></Checkout1>}></Route>
             <Route path="/contact" element={<Contact></Contact>}></Route>
             <Route path="/mens" element={<Mens></Mens>}></Route>
+            <Route path="/profile" element={<Profile></Profile>}></Route>
+            <Route path="/settings" element={<Settings></Settings>}></Route>
             <Route
               path="/product/:id"
               element={<ProductDetails></ProductDetails>}

@@ -29,7 +29,7 @@ const ProductDetails = () => {
     const getProduct = async (params) => {
       try {
         const response = await axios.get(
-          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
+          `http://localhost:8080/api/products/${id}`,
         );
 
         setProduct(response.data.product);
@@ -65,7 +65,7 @@ const addToCart = async (item) => {
   const guestId = getGuestId();
 
   await axios.post(
-    "https://clothingwebsitebackend.onrender.com/api/cart",
+    "http://localhost:8080/api/cart",
     {
       ...item,
       guestId,
@@ -82,39 +82,6 @@ const addToCart = async (item) => {
 
 
 
-
-
-    // const addToCart = async (item) => {
-
-    //   const token = JSON.parse(localStorage.getItem("login"))
-
-    //   if(!token){
-
-    //     setLoginModalOpen(true)
-    //     return
-    //   }
-      
-    //   try {
-
-    //     const response = await axios.post("http://localhost:8080/api/cart", item,{
-    //       headers:{
-    //         Authorization:"Bearer " + token
-    //       }
-    //     })
-
-    //     if(response.status === 200 || response.status === 201){
-
-    //       navigate("/cart")
-    //     }
-        
-    //   } catch (error) {
-        
-    //     console.error(error)
-    //   }
-    // }
-
-  
-  
 
   if (loading) {
     return <ProductDetailsSkeleton />;
@@ -162,7 +129,7 @@ const addToCart = async (item) => {
               />
             </div>
 
-            <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full md:me-5">
+            {/* <div className="flex lg:flex-col gap-1 order-1 lg:order-1 h-full md:me-5">
               {images.map((i, index) => (
                 <img
                   key={index}
@@ -173,7 +140,7 @@ const addToCart = async (item) => {
                   onMouseEnter={(e) => setBgImg(e.target.src)}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div className=" flex flex-col justify-h-full space-y-3">

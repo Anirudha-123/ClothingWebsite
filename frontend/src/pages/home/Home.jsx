@@ -14,8 +14,8 @@ const Home = () => {
   const navigate = useNavigate()
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Duration for the animations
-      // once: true, // Animation triggers once
+      duration: 1000, 
+      once: true, 
     });
   }, []);
   const categories = [
@@ -158,7 +158,7 @@ const Home = () => {
                 <img
                   src={item.img}
                   alt={item.name}
-                  className="w-full h-60 sm:h-72 md:h-80 object-cover"
+                  className="w-full h-60 sm:h-72 lg:h-125 object-cover"
                 />
 
                 <div className="p-2">
@@ -246,7 +246,7 @@ const Home = () => {
                   <img
                     src={item.img}
                     alt={item.name}
-                    className="w-full h-60 sm:h-72 md:h-80 object-cover"
+                    className="w-full h-60 sm:h-72 md:h-80 lg:h-120 object-cover"
                   />
 
                   <div className="p-2">

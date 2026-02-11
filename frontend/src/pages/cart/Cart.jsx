@@ -1,11 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useLoginModal } from "../../context/LoginModal";
 import CartSkeleton from "../skelton/CartSkeleton";
-
-
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -20,12 +17,13 @@ const Cart = () => {
       const guestId = localStorage.getItem("guestId");
 
       try {
-        const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/cart/get", {
-          params: { guestId },
-          headers: token
-            ? { Authorization: "Bearer " + token }
-            : {},
-        });
+        const res = await axios.get(
+          "http://localhost:8080/api/cart/get",
+          {
+            params: { guestId },
+            headers: token ? { Authorization: "Bearer " + token } : {},
+          },
+        );
 
         setCart(res.data?.cart?.items || []);
       } catch (err) {
@@ -38,10 +36,9 @@ const Cart = () => {
     getCart();
   }, []);
 
-if (loading) {
-  return <CartSkeleton />;
-}
-
+  if (loading) {
+    return <CartSkeleton />;
+  }
 
   const handleCheckout = () => {
     const token = localStorage.getItem("token");
@@ -52,151 +49,74 @@ if (loading) {
     navigate("/checkout1");
   };
 
- const token = localStorage.getItem("token");
-const guestId = localStorage.getItem("guestId");
+  const token = localStorage.getItem("token");
+  const guestId = localStorage.getItem("guestId");
 
-const authHeader = token
-  ? { Authorization: "Bearer " + token }
-  : {};
+  const authHeader = token ? { Authorization: "Bearer " + token } : {};
 
-const incrementItem = async (itemId) => {
-  try {
-    const res = await axios.post(
-      `http://localhost:8080/api/cart/increment/${itemId}`,
-      {},
-      {
-        params: { guestId },
-        headers: authHeader,
-      }
-    );
-
-    setCart((prev) =>
-      prev.map((item) =>
-        item._id === itemId
-          ? { ...item, quantity: res.data.qty }
-          : item
-      )
-    );
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-
-// const decrementItem = async (itemId) => {
-//   try {
-//     const res = await axios.post(
-//       `http://localhost:8080/api/cart/decrement/${itemId}`,
-//       {},
-//       {
-//         params: { guestId },
-//         headers: authHeader,
-//       }
-//     );
-
-//     // item removed
-//     if (!res.data.qty || res.data.qty <= 0) {
-//       setCart((prev) => prev.filter((item) => item._id !== itemId));
-//     } else {
-//       setCart((prev) =>
-//         prev.map((item) =>
-//           item._id === itemId
-//             ? { ...item, quantity: res.data.qty }
-//             : item
-//         )
-//       );
-//     }
-//   } catch (error) {
-//     // ✅ HANDLE 404 GRACEFULLY
-//     if (error.response?.status === 404) {
-//       setCart((prev) => prev.filter((item) => item._id !== itemId));
-//     } else {
-//       console.error(error);
-//     }
-//   }
-// };
-
-
-
-
-
-  // const handleQuantityChange = async (itemId, newQty) => {
-  //   if (newQty < 1) return;
-
-  //   const token = localStorage.getItem("token");
-  //   const guestId = localStorage.getItem("guestId");
-
-  //   try {
-  //     // Update quantity in backend
-  //     await axios.put(
-  //       "https://clothingwebsitebackend.onrender.com/api/cart/update",
-  //       { itemId, quantity: newQty, guestId },
-  //       { headers: token ? { Authorization: "Bearer " + token } : {} }
-  //     );
-
-  //     // Update state locally
-  //     setCart((prev) =>
-  //       prev.map((item) =>
-  //         item._id === itemId ? { ...item, quantity: newQty } : item
-  //       )
-  //     );
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // Calculate subtotal
-  
-  const decrementItem = async (itemId, currentQuantity) => {
-  // ✅ IF QTY IS 1 → REMOVE ITEM DIRECTLY
-  if (currentQuantity === 1) {
+  const incrementItem = async (itemId) => {
     try {
-      await axios.delete(
-        `http://localhost:8080/api/cart/remove/${itemId}`,
+      const res = await axios.post(
+        `http://localhost:8080/api/cart/increment/${itemId}`,
+        {},
         {
           params: { guestId },
           headers: authHeader,
-        }
+        },
       );
 
-      // Update local state to remove the item
-      setCart((prev) => prev.filter((item) => item._id !== itemId));
+      setCart((prev) =>
+        prev.map((item) =>
+          item._id === itemId ? { ...item, quantity: res.data.qty } : item,
+        ),
+      );
     } catch (error) {
-      console.error("Error removing item:", error);
+      console.error(error);
     }
-    return; // Stop execution here
-  }
+  };
 
-  // 🔽 NORMAL DECREMENT (qty > 1)
-  try {
-    const res = await axios.post(
-      `http://localhost:8080/api/cart/decrement/${itemId}`,
-      {},
-      {
-        params: { guestId },
-        headers: authHeader,
+  const decrementItem = async (itemId, currentQuantity) => {
+    if (currentQuantity === 1) {
+      try {
+        await axios.delete(`http://localhost:8080/api/cart/remove/${itemId}`, {
+          params: { guestId },
+          headers: authHeader,
+        });
+
+        
+        setCart((prev) => prev.filter((item) => item._id !== itemId));
+      } catch (error) {
+        console.error("Error removing item:", error);
       }
-    );
+      return; 
+    }
 
-    setCart((prev) =>
-      prev.map((item) =>
-        item._id === itemId
-          ? { ...item, quantity: res.data.qty }
-          : item
-      )
-    );
-  } catch (error) {
-    console.error("Error decrementing item:", error);
-  }
-};
+    try {
+      const res = await axios.post(
+        `http://localhost:8080/api/cart/decrement/${itemId}`,
+        {},
+        {
+          params: { guestId },
+          headers: authHeader,
+        },
+      );
 
-  
+      setCart((prev) =>
+        prev.map((item) =>
+          item._id === itemId ? { ...item, quantity: res.data.qty } : item,
+        ),
+      );
+    } catch (error) {
+      console.error("Error decrementing item:", error);
+    }
+  };
+
   const subTotal = cart.reduce(
     (sum, item) => sum + item.cartProduct.price * item.quantity,
-    0
+    0,
   );
 
-  const discountPercent = 10; // Example
+  const discountPercent = 10; 
   const total = subTotal - (subTotal * discountPercent) / 100;
 
   return (
@@ -204,12 +124,42 @@ const incrementItem = async (itemId) => {
       {cart.length > 0 ? (
         <h3 className="font-bold p-2 text-sm lg:text-xl">CART</h3>
       ) : (
-        <h3 className="font-bold p-2 text-sm lg:text-xl">
-          CART IS EMPTY
-          <Link to={"/"} className="ml-2 text-blue-400">
-            Shop Now
-          </Link>
-        </h3>
+        <div className="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
+    
+    <div className="bg-gray-100 p-6 rounded-full mb-6 shadow-sm">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-14 w-14 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 4h12m-10 0a1 1 0 102 0 1 1 0 00-2 0zm8 0a1 1 0 102 0 1 1 0 00-2 0z"
+        />
+      </svg>
+    </div>
+
+    <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+      Your Cart is Empty
+    </h2>
+
+    <p className="text-gray-500 mb-6 max-w-md">
+      Looks like you haven't added anything to your cart yet.
+      Start shopping to find amazing products!
+    </p>
+
+    <button
+      onClick={() => navigate("/")}
+      className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition duration-300"
+    >
+      Continue Shopping
+    </button>
+
+  </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -234,10 +184,10 @@ const incrementItem = async (itemId) => {
                     ₹ {i?.cartProduct?.price}
                   </p>
 
-                  {/* Quantity */}
                   <div className="flex justify-between items-center mt-auto pt-4">
                     <p className="text-xs md:text-sm text-gray-600 font-medium">
-                      Size: <span className="text-gray-900">{i.size || "M"}</span>
+                      Size:{" "}
+                      <span className="text-gray-900">{i.size || "M"}</span>
                     </p>
 
                     <div className="flex items-center gap-2">
@@ -245,14 +195,16 @@ const incrementItem = async (itemId) => {
                         Qty
                       </span>
 
-                    <button
-  onClick={() => decrementItem(i._id, i.quantity)} // Pass both ID and Quantity here
-  className="w-7 h-7 flex items-center justify-center border border-gray-300 rounded-full text-sm font-semibold hover:bg-gray-100 transition"
->
-  −
-</button>
+                      <button
+                        onClick={() => decrementItem(i._id, i.quantity)} // Pass both ID and Quantity here
+                        className="w-7 h-7 flex items-center justify-center border border-gray-300 rounded-full text-sm font-semibold hover:bg-gray-100 transition"
+                      >
+                        −
+                      </button>
 
-                      <span className="text-sm font-semibold">{i.quantity}</span>
+                      <span className="text-sm font-semibold">
+                        {i.quantity}
+                      </span>
 
                       <button
                         onClick={() => incrementItem(i._id)}
@@ -282,7 +234,9 @@ const incrementItem = async (itemId) => {
 
                 <div className="flex justify-between text-sm mb-2">
                   <span>Discount ({discountPercent}%)</span>
-                  <span>₹{((subTotal * discountPercent) / 100).toFixed(2)}</span>
+                  <span>
+                    ₹{((subTotal * discountPercent) / 100).toFixed(2)}
+                  </span>
                 </div>
 
                 <div className="border-t mt-3 pt-3 flex justify-between font-semibold">
@@ -306,5 +260,3 @@ const incrementItem = async (itemId) => {
 };
 
 export default Cart;
-
-

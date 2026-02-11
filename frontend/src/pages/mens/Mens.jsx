@@ -9,8 +9,8 @@ import "aos/dist/aos.css";
 const Mens = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Duration for the animations
-      once: true, // Animation triggers once
+      duration: 1000, 
+      once: true, 
     });
   }, []);
   const { products, loading, hasFeched } = UseProducts("mens");
