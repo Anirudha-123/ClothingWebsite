@@ -29,7 +29,7 @@ const ProductDetails = () => {
     const getProduct = async (params) => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/products/${id}`,
+          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
         );
 
         setProduct(response.data.product);
@@ -65,7 +65,7 @@ const addToCart = async (item) => {
   const guestId = getGuestId();
 
   await axios.post(
-    "http://localhost:8080/api/cart",
+    "https://clothingwebsitebackend.onrender.com/api/cart",
     {
       ...item,
       guestId,
