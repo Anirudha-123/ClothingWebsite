@@ -14,7 +14,7 @@ const OrderDetails = () => {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/order/${id}`, {
+        const res = await axios.get(`https://clothingwebsitebackend.onrender.com/api/order/${id}`, {
           headers: { Authorization: "Bearer " + token },
         });
         setOrder(res.data.order);
