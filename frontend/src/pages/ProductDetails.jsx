@@ -23,7 +23,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:8080/api/products/${id}`);
+        const res = await axios.get(`https://clothingwebsitebackend.onrender.com/api/products/${id}`);
         setProduct(res.data.product);
       } catch (err) {
         console.log(err);
@@ -63,7 +63,7 @@ const ProductDetails = () => {
       const guestId = getGuestId();
 
       await axios.post(
-        "http://localhost:8080/api/cart",
+        "https://clothingwebsitebackend.onrender.com/api/cart",
         {
           cartProduct: product._id,
           quantity: 1,
