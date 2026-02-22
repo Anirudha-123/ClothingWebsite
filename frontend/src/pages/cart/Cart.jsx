@@ -111,10 +111,16 @@ const Cart = () => {
     }
   };
 
+  // const subTotal = cart.reduce(
+  //   (sum, item) => sum + item.cartProduct.price * item.quantity,
+  //   0,
+  // );
+
   const subTotal = cart.reduce(
-    (sum, item) => sum + item.cartProduct.price * item.quantity,
-    0,
-  );
+  (sum, item) =>
+    sum + (item?.cartProduct?.price || 0) * (item?.quantity || 0),
+  0,
+);
 
   const delivery = 100; 
   const total = subTotal + delivery;
