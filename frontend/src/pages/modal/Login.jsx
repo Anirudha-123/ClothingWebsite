@@ -172,7 +172,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "https://clothingwebsitebackend.onrender.com/api/users/login",
         {
           email: formData.email,
           password: formData.password,
@@ -215,7 +215,7 @@ const Login = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:8080/api/users", {
+      await axios.post("https://clothingwebsitebackend.onrender.com/api/users", {
         fullName: formData.name,
         email: formData.email,
         password: formData.password,
