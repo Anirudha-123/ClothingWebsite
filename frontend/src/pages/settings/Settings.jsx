@@ -33,7 +33,7 @@ const Settings = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/users/singleuser",
+          "https://clothingwebsitebackend.onrender.com/api/users/singleuser",
           {
             headers: { Authorization: "Bearer " + token },
           }
@@ -54,7 +54,7 @@ const Settings = () => {
     const fetchAddresses = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/address",
+          "https://clothingwebsitebackend.onrender.com/api/address",
           {
             headers: { Authorization: "Bearer " + token },
           }
@@ -73,7 +73,7 @@ const Settings = () => {
   const updateProfile = async () => {
     try {
       await axios.put(
-        "http://localhost:8080/api/users/update",
+        "https://clothingwebsitebackend.onrender.com/api/users/update",
         {
           fullName: user.name,
           email: user.email,
@@ -110,7 +110,7 @@ const Settings = () => {
     try {
       if (editAddressId) {
         const res = await axios.put(
-          `http://localhost:8080/api/address/${editAddressId}`,
+          `https://clothingwebsitebackend.onrender.com/api/address/${editAddressId}`,
           newAddress,
           { headers: { Authorization: "Bearer " + token } }
         );
@@ -122,7 +122,7 @@ const Settings = () => {
         );
       } else {
         const res = await axios.post(
-          "http://localhost:8080/api/address",
+          "https://clothingwebsitebackend.onrender.com/api/address",
           newAddress,
           { headers: { Authorization: "Bearer " + token } }
         );
@@ -149,7 +149,7 @@ const Settings = () => {
   const deleteAddress = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:8080/api/address/${id}`,
+        `https://clothingwebsitebackend.onrender.com/api/address/${id}`,
         {
           headers: { Authorization: "Bearer " + token },
         }

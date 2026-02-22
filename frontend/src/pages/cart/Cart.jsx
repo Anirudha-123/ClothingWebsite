@@ -18,7 +18,7 @@ const Cart = () => {
 
       try {
         const res = await axios.get(
-          "http://localhost:8080/api/cart/get",
+          "https://clothingwebsitebackend.onrender.com/api/cart/get",
           {
             params: { guestId },
             headers: token ? { Authorization: "Bearer " + token } : {},
@@ -57,7 +57,7 @@ const Cart = () => {
   const incrementItem = async (itemId) => {
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/cart/increment/${itemId}`,
+        `https://clothingwebsitebackend.onrender.com/api/cart/increment/${itemId}`,
         {},
         {
           params: { guestId },
@@ -78,7 +78,7 @@ const Cart = () => {
   const decrementItem = async (itemId, currentQuantity) => {
     if (currentQuantity === 1) {
       try {
-        await axios.delete(`http://localhost:8080/api/cart/remove/${itemId}`, {
+        await axios.delete(`https://clothingwebsitebackend.onrender.com/api/cart/remove/${itemId}`, {
           params: { guestId },
           headers: authHeader,
         });
@@ -93,7 +93,7 @@ const Cart = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8080/api/cart/decrement/${itemId}`,
+        `https://clothingwebsitebackend.onrender.com/api/cart/decrement/${itemId}`,
         {},
         {
           params: { guestId },

@@ -23,10 +23,20 @@ const ProductDetails = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
+<<<<<<< HEAD
         const res = await axios.get(`http://localhost:8080/api/products/${id}`);
         setProduct(res.data.product);
       } catch (err) {
         console.log(err);
+=======
+        const response = await axios.get(
+          `https://clothingwebsitebackend.onrender.com/api/products/${id}`,
+        );
+
+        setProduct(response.data.product);
+      } catch (error) {
+        console.error(error);
+>>>>>>> d64aaeab1e24ea5d1da9c7a4a8d7ba14d8857ec7
       } finally {
         setLoading(false);
       }
@@ -36,9 +46,42 @@ const ProductDetails = () => {
 
   // set main image when product loads
   useEffect(() => {
+<<<<<<< HEAD
     if (images.length > 0) {
       setBgImg(images[0]);
       setActiveIndex(0);
+=======
+    setBgImg(images[0]);
+  }, []);
+
+
+
+const getGuestId = () => {
+  let guestId = localStorage.getItem("guestId");
+  if (!guestId) {
+    guestId = uuidv4();
+    localStorage.setItem("guestId", guestId);
+  }
+  return guestId;
+};
+
+
+
+const addToCart = async (item) => {
+  const token = localStorage.getItem("token");
+  const guestId = getGuestId();
+
+  await axios.post(
+    "https://clothingwebsitebackend.onrender.com/api/cart",
+    {
+      ...item,
+      guestId,
+    },
+    {
+      headers: token
+        ? { Authorization: "Bearer " + token }
+        : {},
+>>>>>>> d64aaeab1e24ea5d1da9c7a4a8d7ba14d8857ec7
     }
   }, [product]);
 
