@@ -3,9 +3,14 @@ import { megaMenu, navLink } from "../utils/data";
 import { Link, useNavigate } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { useLoginModal } from "../context/LoginModal";
+
+
 
 
 import { useEffect } from "react";
+import { logout } from "../redux/authSlice";
 const Header = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [mobileCategory, setMobileCategory] = useState("Mens");
@@ -25,6 +30,11 @@ const Header = () => {
   }, [mobileOpen]);
 
   const token = localStorage.getItem("token");
+
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
+  const { setLoginModalOpen } = useLoginModal();
+
 
   return (
     <>
@@ -123,7 +133,7 @@ const Header = () => {
             </button>
           </div>
 
-          <div className="hidden md:flex">
+          {/* <div className="hidden md:flex">
             {token ? (
               <>
                
@@ -145,7 +155,21 @@ const Header = () => {
               
               </>
             )}
-          </div>
+          </div> */}
+
+           <div className="hidden md:flex gap-3 items-center">
+      {isAuthenticated ? (
+         <div className="  text-2xl text-white ms-3"  onClick={() => navigate("/profile")}><FaRegUser />
+</div>
+      ) : (
+        <button
+          className="border rounded-2xl hover:bg-blue-400 text-white transition font-bold px-3 py-2 md:px-4 md:py-1"
+          onClick={() => setLoginModalOpen(true)}
+        >
+          Login
+        </button>
+      )}
+    </div>
 
           <button
             className="md:hidden text-2xl text-white mx-2 "
@@ -157,7 +181,7 @@ const Header = () => {
             ☰
           </button>
 
-          <div className="md:hidden text-2xl text-white ms-3"  onClick={() => navigate("/profile")}><FaRegUser />
+          <div className="md:hidden  text-2xl text-white ms-3"  onClick={() => navigate("/profile")}><FaRegUser />
 </div>
         </div>
       </div>

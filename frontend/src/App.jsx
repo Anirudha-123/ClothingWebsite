@@ -22,6 +22,13 @@ import Orders from "./pages/order/Orders.jsx";
 import OrderDetails from "./pages/order/OrderDetails.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import Settings from "./pages/settings/Settings.jsx";
+import Womens from "./pages/womens/Womens.jsx";
+import AdminRoute from "./components/AdminRoute.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import MainLayout from "./components/MainLayout.jsx";
+import AdminLayout from "./components/AdminLayout.jsx";
+import About from "./pages/about/About.jsx";
+
 
 function App() {
   return (
@@ -34,38 +41,45 @@ function App() {
             toastClassName="custom-toast"
           />
 
-          
-
-          <Header />
+          {/* <Header /> */}
           <ScrollToTop />
           <Routes>
-            <Route path="/mens" element={<Mens></Mens>}></Route>
-            <Route path="/orderSuccess" element={<OrderSuccess></OrderSuccess>}></Route>
+            {/* USER ROUTES */}
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/mens" element={<Mens />} />
+              <Route path="/womens" element={<Womens />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+                 <Route path="/checkout1" element={<Checkout1></Checkout1>}></Route>
+                             <Route path="/orderSuccess" element={<OrderSuccess></OrderSuccess>}></Route>
             <Route path="/orders" element={<Orders></Orders>}></Route>
 <Route path="/orders/:id" element={<OrderDetails />} />
-            <Route path="/" element={<Home></Home>}></Route>
-            <Route path="/cart" element={<Cart></Cart>}></Route>
-            <Route path="/checkout1" element={<Checkout1></Checkout1>}></Route>
-            <Route path="/contact" element={<Contact></Contact>}></Route>
-            <Route path="/mens" element={<Mens></Mens>}></Route>
-            <Route path="/profile" element={<Profile></Profile>}></Route>
-            <Route path="/settings" element={<Settings></Settings>}></Route>
-            <Route
-              path="/product/:id"
-              element={<ProductDetails></ProductDetails>}
-            ></Route>
 
-            {/* Admin Routes */}
+                 
+            </Route>
 
-            <Route path="/admin/products" element={<Products />}></Route>
+            {/* ADMIN ROUTES */}
             <Route
-              path="/admin/addProduct"
-              element={<AddNewProduct></AddNewProduct>}
-            ></Route>
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminLayout />
+                </AdminRoute>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="dashboard" element={<AdminDashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route path="addProduct" element={<AddNewProduct />} />
+            </Route>
           </Routes>
-          <Footer />
-              <Login></Login>
-
+          {/* <Footer /> */}
+          <Login></Login>
         </Router>
       </LoginModalProvider>
     </>

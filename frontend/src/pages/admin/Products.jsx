@@ -9,8 +9,6 @@ const Products = () => {
   const [edit, setEdit] = useState(null);
   const [preview, setPreview] = useState(null);
 
-
-
   const [formData, setFormaData] = useState({
     name: "",
     description: "",
@@ -20,23 +18,21 @@ const Products = () => {
     subCategory: "",
   });
 
-  const [photo, setPhoto] = useState(null)
+  const [photo, setPhoto] = useState(null);
 
   const handleChange = (e) => {
     setFormaData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handlePhotoChange = (e) => {
+    const file = e.target.files?.[0];
 
-    const file = e.target.files?.[0]
-
-    if(file){
-      setPhoto(file)
+    if (file) {
+      setPhoto(file);
     }
 
-        setPreview(URL.createObjectURL(file)); 
-
-  }
+    setPreview(URL.createObjectURL(file));
+  };
 
   const handleEdit = (item) => {
     setEdit(item);
@@ -48,29 +44,35 @@ const Products = () => {
     e.preventDefault();
 
     setProducts((prev) =>
-      prev.map((p) => (p._id === edit._id ? { ...p,name: formData.name,
-          price: formData.price,
-          img: preview || p.img, } : p)),
+      prev.map((p) =>
+        p._id === edit._id
+          ? {
+              ...p,
+              name: formData.name,
+              price: formData.price,
+              img: preview || p.img,
+            }
+          : p,
+      ),
     );
 
     setEdit(null);
 
     try {
+      const data = new FormData();
 
-
-       const data = new FormData();
-
-       data.append("name", formData.name)
-       data.append("price", formData.price)
-       data.append("img", photo)
+      data.append("name", formData.name);
+      data.append("price", formData.price);
+      data.append("img", photo);
 
       const response = await axios.put(
         `http://localhost:8080/api/products/${edit._id}`,
-        data,{
-          headers:{
-            "Content-Type":"multipart/form-data"
-          }
-        }
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        },
       );
 
       setEdit(null);
@@ -82,8 +84,27 @@ const Products = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure to delete?");
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:8080/api/products/delete/${id}`);
+
+      // remove from UI instantly
+      // setProducts((prev) => prev.filter((p) => p._id !== id));
+
+      alert("Product deleted successfully");
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting product");
+    }
+  };
+
+  console.log(products.length);
+
   return (
-    <div className="px-4 min-h-screen pt-20 py-20">
+    <div className="px-4 min-h-screen">
       {loading && <Spinner></Spinner>}
 
       {!loading && hasFeched && products.length === 0 && (
@@ -112,16 +133,13 @@ const Products = () => {
                     {edit?._id === i._id ? (
                       <>
                         <td className="px-1 py-2 flex items-center justify-center ">
+                          <img
+                            src={preview || i.img}
+                            alt="preview"
+                            className="h-20 w-20 object-contain border"
+                          />
 
-                           <img
-    src={preview || i.img}
-    alt="preview"
-    className="h-20 w-20 object-contain border"
-  />
-
-
-                          <input type="file" onChange={handlePhotoChange}  />
-                          
+                          <input type="file" onChange={handlePhotoChange} />
                         </td>
 
                         <td className="">
@@ -189,8 +207,16 @@ const Products = () => {
                             Update
                           </button>
                         </td>
-                        <td className="px-4 py-2 text-red-600 cursor-pointer">
+                        {/* <td className="px-4 py-2 text-red-600 cursor-pointer">
                           delete
+                        </td> */}
+                        <td className="px-4 py-2 text-red-600 cursor-pointer">
+                          <button
+                            onClick={() => handleDelete(i._id)}
+                            className="px-3 py-1 text-sm bg-red-100 text-red-600 rounded hover:bg-red-200 w-full"
+                          >
+                            Delete
+                          </button>
                         </td>
                       </>
                     )}

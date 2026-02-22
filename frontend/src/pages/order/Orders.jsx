@@ -80,7 +80,7 @@ if (loading) {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <div className="bg-white p-4 flex items-center gap-3 shadow-sm pt-20" onClick={() => navigate("/")}>
+      <div className="bg-white p-4 cursor-pointer flex items-center gap-3 shadow-sm pt-20" onClick={() => navigate("/")}>
         <button  className="text-xl">
           ←
         </button>

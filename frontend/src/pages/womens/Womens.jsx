@@ -5,53 +5,24 @@
 // import SkeletonGrid from "../../components/SkeletonGrid.jsx";
 // import AOS from "aos";
 // import "aos/dist/aos.css";
-// import FilterDrawer from "../../components/FilterDrawer.jsx";
 
-
-
-// const Mens = () => {
+// const Womens = () => {
 //   useEffect(() => {
 //     AOS.init({
-//       duration: 1000, 
-//       once: true, 
+//       duration: 1000,
+//       once: true,
 //     });
 //   }, []);
-//   const { products, loading, hasFeched } = UseProducts("mens");
+//   const { products, loading, hasFeched } = UseProducts("womens");
 //   const navigate = useNavigate();
-
-//   const [showFilter, setShowFilter] = useState(false);
-// const [selectedCategories, setSelectedCategories] = useState([]);
-// const [priceRange, setPriceRange] = useState({ min: "", max: "" });
-
-
-// const handleCategoryChange = (category) => {
-//   setSelectedCategories((prev) =>
-//     prev.includes(category)
-//       ? prev.filter((c) => c !== category)
-//       : [...prev, category]
-//   );
-// };
-
-// const filteredProducts = products.filter((item) => {
-//   const categoryMatch =
-//     selectedCategories.length === 0 ||
-//     selectedCategories.includes(item.subCategory?.toLowerCase());
-
-//   const min = priceRange.min ? Number(priceRange.min) : 0;
-//   const max = priceRange.max ? Number(priceRange.max) : Infinity;
-
-//   const priceMatch = item.price >= min && item.price <= max;
-
-//   return categoryMatch && priceMatch;
-// });
 
 //   return (
 //     <div>
 //       <div className="relative pb-2">
 //         <img
-//           src="/bo3.jpeg"
+//           src="/women_hero.jpeg"
 //           alt="mensImg"
-//           className="w-full h-[30vh] md:h-[60vh] lg:h-[60vh] object-cover"
+//           className="w-full h-[30vh] md:h-[60vh] lg:h-[60vh] object-cover object-top"
 //         />
 //       </div>
 
@@ -67,19 +38,10 @@
 //         {!loading && hasFeched && products.length > 0 && (
 //           <>
 //             <div className="flex flex-row  gap-3 sm:flex-row justify-between  items-center mb-6 md:px-3">
-//               {/* <button className="flex items-center gap-2 text-lg sm:text-xl font-semibold text-gray-700 hover:text-gray-900 transition">
+//               <button className="flex items-center gap-2 text-lg sm:text-xl font-semibold text-gray-700 hover:text-gray-900 transition">
 //                 <IoFilterSharp className="text-xl sm:text-2xl" />
 //                 <span>Filter</span>
-//               </button> */}
-
-
-//               <button
-//   onClick={() => setShowFilter(true)}
-//   className="flex items-center gap-2 text-lg sm:text-xl font-semibold text-gray-700 hover:text-gray-900 transition"
-// >
-//   <IoFilterSharp className="text-xl sm:text-2xl" />
-//   <span>Filter</span>
-// </button>
+//               </button>
 
 //               <p className="text-sm sm:text-base font-medium text-gray-500">
 //                 Total Products:{" "}
@@ -89,79 +51,16 @@
 //               </p>
 //             </div>
 
-//             {/* FILTER DRAWER */}
-// <div
-//   className={`fixed top-0 left-0 h-full w-72 bg-white shadow-lg z-50 transform transition-transform duration-300 ${
-//     showFilter ? "translate-x-0" : "-translate-x-full"
-//   }`}
-// >
-//   <div className="p-5 space-y-6">
-//     <h2 className="text-xl font-semibold">Filter</h2>
-
-//     {/* CATEGORY */}
-//     <div>
-//       <h3 className="font-medium mb-2">Category</h3>
-
-//       {["shirt", "t-shirt", "jeans"].map((cat) => (
-//         <label key={cat} className="flex items-center gap-2 mb-2">
-//           <input
-//             type="checkbox"
-//             checked={selectedCategories.includes(cat)}
-//             onChange={() => handleCategoryChange(cat)}
-//           />
-//           <span className="capitalize">{cat}</span>
-//         </label>
-//       ))}
-//     </div>
-
-//     {/* PRICE RANGE */}
-//     <div>
-//       <h3 className="font-medium mb-2">Price Range</h3>
-
-//       <input
-//         type="number"
-//         placeholder="Min"
-//         className="border w-full mb-2 p-1"
-//         value={priceRange.min}
-//         onChange={(e) =>
-//           setPriceRange({ ...priceRange, min: e.target.value })
-//         }
-//       />
-
-//       <input
-//         type="number"
-//         placeholder="Max"
-//         className="border w-full p-1"
-//         value={priceRange.max}
-//         onChange={(e) =>
-//           setPriceRange({ ...priceRange, max: e.target.value })
-//         }
-//       />
-//     </div>
-
-//     {/* APPLY BUTTON */}
-//     <button
-//       onClick={() => setShowFilter(false)}
-//       className="w-full bg-black text-white py-2 mt-4"
-//     >
-//       Apply
-//     </button>
-//   </div>
-// </div>
-
 //             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
-//               {filteredProducts.map((item, index) => (
+//               {products.map((item, index) => (
 //                 <div
 //                   key={index}
-                  
-
 //                   onClick={() => navigate(`/product/${item._id}`)}
 //                 >
 //                   <img
 //                     src={item.img}
 //                     alt={item.name}
-//                       loading="lazy"
-
+//                     loading="lazy"
 //                     className="w-full  aspect-3/4 object-cover "
 //                   />
 
@@ -203,10 +102,7 @@
 //   );
 // };
 
-// export default Mens;
-
-
-
+// export default Womens;
 import React, { useEffect, useState } from "react";
 import UseProducts from "../hooks/UseProducts.jsx";
 import { IoFilterSharp } from "react-icons/io5";
@@ -216,7 +112,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import FilterDrawer from "../../components/FilterDrawer.jsx";
 
-const Mens = () => {
+const Womens = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -224,15 +120,17 @@ const Mens = () => {
     });
   }, []);
 
-  const { products, loading, hasFeched } = UseProducts("mens");
+  const { products, loading, hasFeched } = UseProducts("womens");
   const navigate = useNavigate();
 
   const [showFilter, setShowFilter] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [priceRange, setPriceRange] = useState({ min: "", max: "" });
 
+  // ✅ Fixed Categories
   const categoryOptions = ["shirt", "t-shirt", "jeans"];
 
+  // ✅ Filter Logic
   const filteredProducts = products.filter((item) => {
     const categoryMatch =
       selectedCategories.length === 0 ||
@@ -251,9 +149,9 @@ const Mens = () => {
       {/* HERO IMAGE */}
       <div className="relative pb-2">
         <img
-          src="/bo3.jpeg"
-          alt="mensImg"
-          className="w-full h-[30vh] md:h-[60vh] object-cover"
+          src="/women_hero.jpeg"
+          alt="womenImg"
+          className="w-full h-[30vh] md:h-[60vh] object-cover object-top"
         />
       </div>
 
@@ -280,7 +178,7 @@ const Mens = () => {
               </p>
             </div>
 
-            {/* ✅ REUSABLE FILTER DRAWER */}
+            {/* ✅ Reusable Filter Drawer */}
             <FilterDrawer
               show={showFilter}
               setShow={setShowFilter}
@@ -344,4 +242,4 @@ const Mens = () => {
   );
 };
 
-export default Mens;
+export default Womens;

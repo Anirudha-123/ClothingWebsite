@@ -51,7 +51,7 @@ const Checkout1 = () => {
 
   useEffect(() => {
     const fetchAddresses = async () => {
-      const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/address", {
+      const res = await axios.get("http://localhost:8080/api/address", {
         headers: { Authorization: "Bearer " + token },
       });
 
@@ -67,17 +67,15 @@ const Checkout1 = () => {
   };
 
   const saveNewAddress = async () => {
-
     for (let key in newAddress) {
-    if (!newAddress[key].trim()) {
-      alert("All fields are required");
-      return;
+      if (!newAddress[key].trim()) {
+        alert("All fields are required");
+        return;
+      }
     }
-  }
 
-  
     const res = await axios.post(
-      "https://clothingwebsitebackend.onrender.com/api/address",
+      "http://localhost:8080/api/address",
       newAddress,
       { headers: { Authorization: "Bearer " + token } },
     );
@@ -93,7 +91,7 @@ const Checkout1 = () => {
     if (!selectedAddress) return alert("Select address");
 
     await axios.post(
-      "https://clothingwebsitebackend.onrender.com/api/order/place",
+      "http://localhost:8080/api/order/place",
       {
         shippingAddress: selectedAddress,
         paymentMethod: "COD",
@@ -161,17 +159,16 @@ const Checkout1 = () => {
           )}
 
           <div className="space-y-3">
-
             {addresses.length === 0 && !showForm && (
-    <div className="text-center py-6 border border-dashed rounded-lg bg-gray-50">
-      <p className="text-gray-500 text-sm">
-        No saved addresses found.
-      </p>
-      <p className="text-xs text-gray-400 mt-1">
-        Please add a new shipping address to continue.
-      </p>
-    </div>
-  )}
+              <div className="text-center py-6 border border-dashed rounded-lg bg-gray-50">
+                <p className="text-gray-500 text-sm">
+                  No saved addresses found.
+                </p>
+                <p className="text-xs text-gray-400 mt-1">
+                  Please add a new shipping address to continue.
+                </p>
+              </div>
+            )}
             {addresses.map((addr) => (
               <label
                 key={addr._id}

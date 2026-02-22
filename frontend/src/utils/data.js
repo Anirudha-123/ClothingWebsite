@@ -1,11 +1,10 @@
 export const navLink = [
-  { name: "Home" , path:"/" },
+  // { name: "Home" , path:"/" },
   { name: "Mens"  , path:"/mens"},
-  { name: "Womens" },
-  { name: "Kids" },
-  { name: "Cart" , path:"/cart" },
-  { name: "Products" , path:"/admin/products" },
-  { name: "Add Product" , path:"/admin/addProduct" },
+  { name: "Womens",path:"/womens" },
+  // { name: "Kids" },
+  { name: "About Us" , path:"/about" },
+  { name: "Contact" , path:"/contact" },
 ];
 
 export const megaMenu = {

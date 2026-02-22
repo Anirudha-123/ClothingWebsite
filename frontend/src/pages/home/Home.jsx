@@ -9,19 +9,23 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useNavigate } from "react-router-dom";
+import UseProducts from "../hooks/UseProducts";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const { products: allProducts } = UseProducts("");
+  const { products: mensProducts } = UseProducts("mens");
+
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
-      duration: 1000, 
-      once: true, 
+      duration: 1000,
+      once: true,
     });
   }, []);
   const categories = [
-    { img: "img1.jpg", title: "Mens" , path:"/mens"},
-    { img: "img2.jpg", title: "Womens" },
-    { img: "img3.jpg", title: "Kids" },
+    { img: "img1.jpg", title: "Mens", path: "/mens" },
+    { img: "img2.jpg", title: "Womens" , path: "/womens"},
+    // { img: "img3.jpg", title: "Kids" },
   ];
 
   const getDiscount = (price, originalPrice) => {
@@ -77,7 +81,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="categories grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-1 px-1 py-1 ">
+      <div className="categories grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-2 gap-1 px-1 py-1 ">
         {categories.map((i, index) => (
           <div
             key={index}
@@ -152,9 +156,12 @@ const Home = () => {
             },
           }}
         >
-          {newArrivals.map((item, index) => (
+          {allProducts.slice(0, 6).map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="shadow-sm rounded-md overflow-hidden">
+              <div
+                className="shadow-sm rounded-md overflow-hidden"
+                onClick={() => navigate(`/product/${item._id}`)}
+              >
                 <img
                   src={item.img}
                   alt={item.name}
@@ -240,9 +247,9 @@ const Home = () => {
               },
             }}
           >
-            {newArrivals.map((item, index) => (
+            {mensProducts.slice(0, 6).map((item, index) => (
               <SwiperSlide key={index}>
-                <div className="shadow-sm rounded-md overflow-hidden">
+                <div className="shadow-sm rounded-md overflow-hidden"  onClick={() => navigate(`/product/${item._id}`)}>
                   <img
                     src={item.img}
                     alt={item.name}

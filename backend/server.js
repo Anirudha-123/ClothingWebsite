@@ -9,6 +9,8 @@ import productRoute from './routes/product.route.js'
 import cartRoute from "./routes/cart.route.js"
 import orderRoute from "./routes/order.route.js"
 import addressRoutes from "./routes/address.route.js"
+import adminRoute from "./routes/admin.route.js";
+
 
 
 const app = express()
@@ -19,7 +21,8 @@ app.use(express.json())
 
 app.use(cors({
   origin: [
-    "http://localhost:3000",
+    "http://localhost:5174",
+    "http://localhost:5173",
     "https://clothingwebsite-rib5.onrender.com",
       "https://clothingwebsitebackend.onrender.com"
   ],
@@ -40,6 +43,8 @@ app.use('/api/users' ,userRoute)
 app.use("/api/cart", cartRoute)
 app.use("/api/order", orderRoute)
 app.use("/api/address", addressRoutes);
+
+app.use("/api/admin", adminRoute);
 
 
 app.use((_req,res) => {

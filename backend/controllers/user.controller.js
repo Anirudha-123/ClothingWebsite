@@ -83,11 +83,17 @@ console.log("PASSWORD TYPE:", typeof password);
 
  
 
+  // if (!user) {
+  //  return res.status(404).json({
+  //     message: " this email  is not ragister",
+  //   });
+  // }
+
   if (!user) {
-   return res.status(404).json({
-      message: " this email  is not ragister",
-    });
-  }
+  return res.status(401).json({
+    message: "Email not registered",
+  });
+}
 
   const isPassword = await bcrypt.compare(password, user.password);
 

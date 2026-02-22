@@ -102,12 +102,12 @@ const AddNewProduct = () => {
   };
 
   return (
-    <div className="px-4 w-full bg-gray-100 min-h-screen pt-20">
+    <div className="px-4 w-full bg-gray-100 min-h-screen ">
       {loading ? (
         <Spinner text="Adding product..." color="black" />
       ) : (
         <>
-          <div className="form flex justify-center w-full items-center   py-6 pb-10 ">
+          <div className="form flex justify-center w-full items-center  ">
             <form
               action=""
               onSubmit={handleSubmit}

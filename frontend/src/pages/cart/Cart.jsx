@@ -116,8 +116,8 @@ const Cart = () => {
     0,
   );
 
-  const discountPercent = 10; 
-  const total = subTotal - (subTotal * discountPercent) / 100;
+  const delivery = 100; 
+  const total = subTotal + delivery;
 
   return (
     <div className="container mx-auto lg:px-10 bg-gray-50 pt-20 pb-20">
@@ -233,9 +233,9 @@ const Cart = () => {
                 </div>
 
                 <div className="flex justify-between text-sm mb-2">
-                  <span>Discount ({discountPercent}%)</span>
+                  <span>Delivery </span>
                   <span>
-                    ₹{((subTotal * discountPercent) / 100).toFixed(2)}
+                   {delivery}
                   </span>
                 </div>
 
