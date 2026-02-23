@@ -120,7 +120,7 @@ const Cart = () => {
  const decrementItem = async (itemId) => {
   try {
     const res = await axios.post(
-      `http://localhost:8080/api/cart/decrement/${itemId}`,
+      `https://clothingwebsitebackend.onrender.com/api/cart/decrement/${itemId}`,
       {},
       {
         params: { guestId },
