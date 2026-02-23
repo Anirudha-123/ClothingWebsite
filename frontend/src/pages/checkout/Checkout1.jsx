@@ -52,7 +52,7 @@ const Checkout1 = () => {
 
   useEffect(() => {
     const fetchAddresses = async () => {
-      const res = await axios.get("http://localhost:8080/api/address", {
+      const res = await axios.get("https://clothingwebsitebackend.onrender.com/api/address", {
         headers: { Authorization: "Bearer " + token },
       });
 
@@ -76,7 +76,7 @@ const Checkout1 = () => {
     }
 
     const res = await axios.post(
-      "http://localhost:8080/api/address",
+      "https://clothingwebsitebackend.onrender.com/api/address",
       newAddress,
       { headers: { Authorization: "Bearer " + token } },
     );
@@ -102,7 +102,7 @@ const Checkout1 = () => {
     setOrderLoading(true);
 
     await axios.post(
-      "http://localhost:8080/api/order/place",
+      "https://clothingwebsitebackend.onrender.com/api/order/place",
       {
         shippingAddress: selectedAddress,
         paymentMethod: "COD",
