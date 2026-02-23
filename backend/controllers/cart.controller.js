@@ -209,6 +209,46 @@ const incrementQty = async (req, res) => {
 // };
 
 
+// const decrementQty = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const guestId = req.query.guestId;
+//     const userId = req.user?._id || null;
+
+//     const query = userId ? { userId } : { guestId };
+
+//     const cart = await Cart.findOne(query);
+
+//     if (!cart) {
+//       return res.status(404).json({ message: "Cart not found" });
+//     }
+
+//     const item = cart.items.find((i) => i._id.toString() === id);
+
+//     if (!item) {
+//       return res.status(404).json({ message: "Item not found in cart" });
+//     }
+
+//     if (item.quantity <= 1) {
+//       cart.items = cart.items.filter(
+//         (i) => i._id.toString() !== id
+//       );
+//     } else {
+//       item.quantity -= 1;
+//     }
+
+//     await cart.save();
+
+//     res.json({
+//       message: "Quantity decreased",
+//       qty: item.quantity > 0 ? item.quantity : 0,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
 const decrementQty = async (req, res) => {
   try {
     const { id } = req.params;
@@ -223,31 +263,37 @@ const decrementQty = async (req, res) => {
       return res.status(404).json({ message: "Cart not found" });
     }
 
-    const item = cart.items.find((i) => i._id.toString() === id);
+    const index = cart.items.findIndex(
+      (i) => i._id.toString() === id
+    );
 
-    if (!item) {
-      return res.status(404).json({ message: "Item not found in cart" });
+    if (index === -1) {
+      return res.status(404).json({ message: "Item not found" });
     }
 
-    if (item.quantity <= 1) {
-      cart.items = cart.items.filter(
-        (i) => i._id.toString() !== id
-      );
+    if (cart.items[index].quantity <= 1) {
+      cart.items.splice(index, 1); // remove item properly
     } else {
-      item.quantity -= 1;
+      cart.items[index].quantity -= 1;
     }
 
     await cart.save();
 
+    const updatedCart = await Cart.findOne(query).populate(
+      "items.cartProduct",
+      "name price img"
+    );
+
     res.json({
-      message: "Quantity decreased",
-      qty: item.quantity > 0 ? item.quantity : 0,
+      message: "Cart updated",
+      cart: updatedCart,
     });
+
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
+
 
 
 // const getCart = async (req, res) => {

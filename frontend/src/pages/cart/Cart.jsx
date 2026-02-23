@@ -10,6 +10,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const { setLoginModalOpen } = useLoginModal();
 
+
   // Fetch cart from backend
   useEffect(() => {
     const getCart = async () => {
@@ -75,47 +76,68 @@ const Cart = () => {
     }
   };
 
-  const decrementItem = async (itemId, currentQuantity) => {
-    if (currentQuantity === 1) {
-      try {
-        await axios.delete(`https://clothingwebsitebackend.onrender.com/api/cart/remove/${itemId}`, {
-          params: { guestId },
-          headers: authHeader,
-        });
+  // const decrementItem = async (itemId, currentQuantity) => {
+  //   if (currentQuantity === 1) {
+  //     try {
+  //       await axios.delete(`https://clothingwebsitebackend.onrender.com/api/cart/remove/${itemId}`, {
+  //         params: { guestId },
+  //         headers: authHeader,
+  //       });
 
         
-        setCart((prev) => prev.filter((item) => item._id !== itemId));
-      } catch (error) {
-        console.error("Error removing item:", error);
-      }
-      return; 
-    }
+  //       setCart((prev) => prev.filter((item) => item._id !== itemId));
+  //     } catch (error) {
+  //       console.error("Error removing item:", error);
+  //     }
+  //     return; 
+  //   }
 
-    try {
-      const res = await axios.post(
-        `https://clothingwebsitebackend.onrender.com/api/cart/decrement/${itemId}`,
-        {},
-        {
-          params: { guestId },
-          headers: authHeader,
-        },
-      );
+  //   try {
+  //     const res = await axios.post(
+  //       `http://localhost:8080/api/cart/decrement/${itemId}`,
+  //       {},
+  //       {
+  //         params: { guestId },
+  //         headers: authHeader,
+  //       },
+  //     );
 
-      setCart((prev) =>
-        prev.map((item) =>
-          item._id === itemId ? { ...item, quantity: res.data.qty } : item,
-        ),
-      );
-    } catch (error) {
-      console.error("Error decrementing item:", error);
-    }
-  };
+  //     setCart((prev) =>
+  //       prev.map((item) =>
+  //         item._id === itemId ? { ...item, quantity: res.data.qty } : item,
+  //       ),
+  //     );
+  //   } catch (error) {
+  //     console.error("Error decrementing item:", error);
+  //   }
+  // };
 
   // const subTotal = cart.reduce(
   //   (sum, item) => sum + item.cartProduct.price * item.quantity,
   //   0,
   // );
 
+ const decrementItem = async (itemId) => {
+  try {
+    const res = await axios.post(
+      `http://localhost:8080/api/cart/decrement/${itemId}`,
+      {},
+      {
+        params: { guestId },
+        headers: authHeader,
+      }
+    );
+
+    if (res.data?.cart?.items) {
+      setCart(res.data.cart.items);
+    } else {
+      setCart([]); // fallback safety
+    }
+
+  } catch (error) {
+    console.error("Error decrementing item:", error);
+  }
+};
   const subTotal = cart.reduce(
   (sum, item) =>
     sum + (item?.cartProduct?.price || 0) * (item?.quantity || 0),
