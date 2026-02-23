@@ -34,18 +34,22 @@ const Header = () => {
   const { setLoginModalOpen } = useLoginModal();
 
   const categoryMap = {
-    Mens: ["shirt", "jeans", "t-shirt", "kurta", "hoodie", "blazer", "sweater"],
-    Womens: [
-      "kurti",
-      "t-shirt",
-      "top",
-      "jeans",
-      "dress",
-      "skirt",
-      "jacket",
-      "sweater",
-    ],
-    Kids: ["shirt", "shorts"],
+    // Mens: ["shirt", "jeans", "t-shirt", "kurta", "hoodie", "blazer", "sweater"],
+
+    Mens: ["shirt", "jeans", "t-shirt"],
+    // Womens: [
+    //   "kurti",
+    //   "t-shirt",
+    //   "top",
+    //   "jeans",
+    //   "dress",
+    //   "skirt",
+    //   "jacket",
+    //   "sweater",
+    // ],
+
+    Womens: ["kurti", "t-shirt", "jeans"],
+    // Kids: ["shirt", "shorts"],
   };
 
   return (
@@ -221,7 +225,7 @@ const Header = () => {
 
           {/* CATEGORY TABS */}
           <div className="flex justify-around text-2xl pt-24">
-            {["Mens", "Womens", "Kids"].map((cat) => (
+            {["Mens", "Womens"].map((cat) => (
               <span
                 key={cat}
                 onClick={() => setMobileCategory(cat)}

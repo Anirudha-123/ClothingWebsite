@@ -147,15 +147,15 @@ export default function ProductsPage() {
   const heroImages = {
     mens: {
       default: "/bo3.jpeg",
-      tshirt: "/mens-tshirt.jpg",
-      shirt: "/mens-shirt.jpg",
-      shoes: "/mens-shoes.jpg",
+      tshirt: "/bo3.jpeg",
+      shirt: "/bo3.jpeg",
+      shoes: "/bo3.jpeg",
     },
     womens: {
       default: "/women_hero.jpeg",
-      tshirt: "/womens-tshirt.jpg",
-      dress: "/womens-dress.jpg",
-      shoes: "/womens-shoes.jpg",
+      tshirt: "/women_hero.jpeg",
+      dress: "/women_hero.jpeg",
+      shoes: "/women_hero.jpeg",
     },
     kids: {
       default: "/kids-banner.jpg",

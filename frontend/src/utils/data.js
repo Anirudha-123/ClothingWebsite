@@ -96,46 +96,46 @@ export const megaMenu = {
       "Caps & Hats"
     ]
   },
-   Kids: {
-    BoysClothing: [
-      "T-Shirts",
-      "Shirts",
-      "Jeans",
-      "Trousers",
-      "Shorts",
-      "Track Pants & Pyjamas",
-      "Jackets & Sweatshirts",
-      "Ethnic Wear"
-    ],
+  //  Kids: {
+  //   BoysClothing: [
+  //     "T-Shirts",
+  //     "Shirts",
+  //     "Jeans",
+  //     "Trousers",
+  //     "Shorts",
+  //     "Track Pants & Pyjamas",
+  //     "Jackets & Sweatshirts",
+  //     "Ethnic Wear"
+  //   ],
 
-    GirlsClothing: [
-      "Dresses",
-      "Tops",
-      "T-Shirts",
-      "Jeans & Jeggings",
-      "Trousers & Capris",
-      "Skirts & Shorts",
-      "Ethnic Wear"
-    ],
+  //   GirlsClothing: [
+  //     "Dresses",
+  //     "Tops",
+  //     "T-Shirts",
+  //     "Jeans & Jeggings",
+  //     "Trousers & Capris",
+  //     "Skirts & Shorts",
+  //     "Ethnic Wear"
+  //   ],
 
-    Footwear: [
-      "Casual Shoes",
-      "Flip Flops",
-      "Sports Shoes",
-      "Sandals",
-      "School Shoes",
-      "Socks"
-    ],
+  //   Footwear: [
+  //     "Casual Shoes",
+  //     "Flip Flops",
+  //     "Sports Shoes",
+  //     "Sandals",
+  //     "School Shoes",
+  //     "Socks"
+  //   ],
 
-    Accessories: [
-      "Bags & Backpacks",
-      "Watches",
-      "Sunglasses",
-      "Caps & Hats",
-      "Hair Accessories",
-      "Belts",
-      "Toys & Games"
-    ]
-  }
+  //   Accessories: [
+  //     "Bags & Backpacks",
+  //     "Watches",
+  //     "Sunglasses",
+  //     "Caps & Hats",
+  //     "Hair Accessories",
+  //     "Belts",
+  //     "Toys & Games"
+  //   ]
+  // }
 };
 
