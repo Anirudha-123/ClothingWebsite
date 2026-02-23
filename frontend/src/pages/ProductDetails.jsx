@@ -9,6 +9,8 @@ const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [cartLoading, setCartLoading] = useState(false);
+
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState("");
   const [loading, setLoading] = useState(true);
@@ -59,6 +61,8 @@ const ProductDetails = () => {
     }
 
     try {
+          setCartLoading(true);
+
       const token = localStorage.getItem("token");
       const guestId = getGuestId();
 
@@ -79,7 +83,9 @@ const ProductDetails = () => {
       navigate("/cart");
     } catch (err) {
       toast.error("Error adding to cart");
-    }
+    }finally {
+    setCartLoading(false);
+  }
   };
 
   const handleScroll = () => {
@@ -227,7 +233,7 @@ const ProductDetails = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
-            <button
+            {/* <button
               className="px-4 py-3 bg-black text-gray-200 font-semibold w-full sm:w-40"
               onClick={() =>
                 addToCart({
@@ -237,7 +243,19 @@ const ProductDetails = () => {
               }
             >
               ADD TO CART
-            </button>
+            </button> */}
+
+            <button
+  disabled={cartLoading}
+  className={`px-4 py-3 font-semibold w-full sm:w-40 transition ${
+    cartLoading
+      ? "bg-gray-400 text-white cursor-not-allowed"
+      : "bg-black text-gray-200 hover:opacity-90"
+  }`}
+  onClick={addToCart}
+>
+  {cartLoading ? "ADDING..." : "ADD TO CART"}
+</button>
 
             <button className="px-4 py-3 border border-black text-black font-semibold w-full sm:w-40">
               BUY NOW

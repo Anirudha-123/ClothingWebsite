@@ -8,6 +8,7 @@ const Checkout1 = () => {
   const token = localStorage.getItem("token");
   const guestId = localStorage.getItem("guestId");
   const [loading, setLoading] = useState(true);
+  const [orderLoading, setOrderLoading] = useState(false);
 
   const [addresses, setAddresses] = useState([]);
   const [selectedAddressId, setSelectedAddressId] = useState("");
@@ -86,9 +87,19 @@ const Checkout1 = () => {
   };
 
   const placeOrder = async () => {
-    const selectedAddress = addresses.find((a) => a._id === selectedAddressId);
+  if (orderLoading) return; // prevent double click
 
-    if (!selectedAddress) return alert("Select address");
+  const selectedAddress = addresses.find(
+    (a) => a._id === selectedAddressId
+  );
+
+  if (!selectedAddress) {
+    alert("Select address");
+    return;
+  }
+
+  try {
+    setOrderLoading(true);
 
     await axios.post(
       "http://localhost:8080/api/order/place",
@@ -97,13 +108,18 @@ const Checkout1 = () => {
         paymentMethod: "COD",
         guestId,
       },
-      { headers: { Authorization: "Bearer " + token } },
+      { headers: { Authorization: "Bearer " + token } }
     );
 
     localStorage.removeItem("guestId");
 
     navigate("/orderSuccess");
-  };
+  } catch (error) {
+    alert("Error placing order");
+  } finally {
+    setOrderLoading(false);
+  }
+};
 
   if (loading) {
     return <CheckoutSkeleton />;
@@ -219,12 +235,16 @@ const Checkout1 = () => {
           </div>
 
           <button
-            onClick={placeOrder}
-            disabled={subTotal === 0}
-            className="w-full mt-5 bg-black text-white py-3 rounded text-sm sm:text-base hover:opacity-90 disabled:opacity-40"
-          >
-            PLACE ORDER (COD)
-          </button>
+  onClick={placeOrder}
+  disabled={subTotal === 0 || orderLoading}
+  className={`w-full mt-5 py-3 rounded text-sm sm:text-base transition ${
+    orderLoading
+      ? "bg-gray-400 text-white cursor-not-allowed"
+      : "bg-black text-white hover:opacity-90"
+  }`}
+>
+  {orderLoading ? "PLACING ORDER..." : "PLACE ORDER (COD)"}
+</button>
         </div>
       </div>
     </div>

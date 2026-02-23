@@ -28,6 +28,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 import MainLayout from "./components/MainLayout.jsx";
 import AdminLayout from "./components/AdminLayout.jsx";
 import About from "./pages/about/About.jsx";
+import ProductsPage from "./pages/productPage/ProductsPage.jsx";
+
 
 
 function App() {
@@ -59,6 +61,10 @@ function App() {
                              <Route path="/orderSuccess" element={<OrderSuccess></OrderSuccess>}></Route>
             <Route path="/orders" element={<Orders></Orders>}></Route>
 <Route path="/orders/:id" element={<OrderDetails />} />
+
+
+   <Route path="/:category" element={<ProductsPage />} />
+<Route path="/:category/:subCategory" element={<ProductsPage />} />
 
                  
             </Route>
