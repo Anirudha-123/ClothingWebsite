@@ -179,7 +179,7 @@ export default function ProductsPage() {
         setLoading(true);
 
         const response = await fetch(
-          `http://localhost:8080/api/products/get?category=${category}`
+          `https://clothingwebsitebackend.onrender.com/api/products/get?category=${category}`
         );
 
         const data = await response.json();
