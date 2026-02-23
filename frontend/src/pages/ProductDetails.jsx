@@ -67,7 +67,7 @@ const ProductDetails = () => {
       const guestId = getGuestId();
 
       await axios.post(
-        "http://localhost:8080/api/cart",
+        "https://clothingwebsitebackend.onrender.com/api/cart",
         {
           cartProduct: product._id,
           quantity: 1,
