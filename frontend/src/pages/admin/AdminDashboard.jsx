@@ -115,7 +115,7 @@ const AdminDashboard = () => {
         const token = localStorage.getItem("token");
 
         const { data } = await axios.get(
-          "http://localhost:8080/api/admin/stats",
+          "https://clothingwebsitebackend.onrender.com/api/admin/stats",
           {
             headers: {
               Authorization: `Bearer ${token}`,
